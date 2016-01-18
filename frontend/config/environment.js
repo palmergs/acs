@@ -1,5 +1,15 @@
 /* jshint node: true */
 
+var contentSecurityPolicy = {
+  'default-src':  "'none'",
+  'script-src':   "'self'",
+  'font-src':     "'self'",
+  'connect-src':  "'self' localhost:*",
+  'img-src':      "'self'",
+  'style-src':    "'self' 'unsafe-inline' 'unsafe-eval'",
+  'media-src':    "'self'"
+};
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'frontend',
@@ -20,6 +30,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.contentSecurityPolicy = contentSecurityPolicy;
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
