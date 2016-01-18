@@ -1,0 +1,11 @@
+<table>
+  <tbody>
+    {{#each rows as |row|}}
+    <tr class="color-picker-row">
+      {{#each row as |col|}}
+        {{color-picker-swatch color=col}}
+      {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
