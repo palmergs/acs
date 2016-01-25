@@ -4,13 +4,26 @@
   height: 12px;
 }
 
+.picture-editor-cell {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #aaaaaa;
+  margin: 1px;
+  &.overlay {
+    border-color: #efefef;
+  }
+  &.tile {
+    border-color: #aaaaaa !important;
+  }
+}
+
 .color-picker-cell {
   width: 10px;
   height: 10px;
-  padding: 2px;
+  border: 1px solid #ffffff;
   margin: 0;
   &.selected {
     padding: 0px;
-    border: 2px solid #000000;
+    border: 1px solid #000000;
   }
 }
