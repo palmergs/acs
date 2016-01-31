@@ -32,7 +32,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
-  config.include Devise::TestHelpers, type: :controller
+# TODO: uncomment this once devise is added to app
+#  config.include Devise::TestHelpers, type: :controller
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
