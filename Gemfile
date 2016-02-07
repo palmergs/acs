@@ -6,11 +6,12 @@ gem 'pg',             '~> 0.18'
 gem 'uglifier',       '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jbuilder',       '~> 2.0'
-gem 'puma'
 gem 'bcrypt',         '~> 3.1.7'
 
 gem 'ember-cli-rails'
 gem 'active_model_serializers', '~>0.10.0.rc3'
+
+gem 'chunky_png'
 
 group :development do
   gem 'puma'
