@@ -21,16 +21,16 @@ group :development do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'faker'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug'
 end
 
 group :test do
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'database_cleaner'
   gem 'simplecov', require: false
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
