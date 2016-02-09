@@ -19,7 +19,7 @@ class SlugSupport
   end
 
   def self.namify slug
-    return nil unless slub
+    return nil unless slug
 
     tmp = slug.to_s.strip.gsub(/[_-]+/, ' ')
     tmp.empty? ? nil : tmp
