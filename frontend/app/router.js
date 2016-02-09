@@ -7,6 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('test-picker');
+  this.route('pictures');
 });
 
 export default Router;
