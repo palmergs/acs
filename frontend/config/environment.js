@@ -5,7 +5,7 @@ var contentSecurityPolicy = {
   'script-src':   "'self'",
   'font-src':     "'self'",
   'connect-src':  "'self' localhost:*",
-  'img-src':      "'self'",
+  'img-src':      "'self' localhost:*",
   'style-src':    "'self' 'unsafe-inline' 'unsafe-eval'",
   'media-src':    "'self'"
 };
