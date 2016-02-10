@@ -7,7 +7,11 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('test-picker');
-  this.route('pictures');
+  this.route('pictures', function() {
+    this.route('edit', { path: '/:id' }, function() {
+
+    });
+  });
 });
 
 export default Router;
