@@ -1,4 +1,4 @@
 {{outlet}}
 {{#each model as |picture|}}
-  <span><img src="http://localhost:3000/{{ picture.path }}" /></span>
+  <span>{{#link-to "pictures.edit" picture.id}}<img src="http://localhost:3000/{{ picture.path }}" />{{/link-to}}</span>
 {{/each}}

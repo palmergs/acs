@@ -5,5 +5,4 @@ FactoryGirl.define do
     category "testing"
     sequence(:path) {|n| "pictures/testing/my-picture-#{ n }.png" }
   end
-
 end
