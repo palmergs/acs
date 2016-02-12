@@ -1,7 +1,7 @@
 class Api::V1::PicturesController < ApplicationController
 
   def index
-    @pictures = Picture.all
+    @pictures = Picture.page(params[:p]).per(100)
     render json: @pictures
   end
 
