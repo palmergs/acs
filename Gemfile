@@ -12,6 +12,7 @@ gem 'ember-cli-rails'
 gem 'active_model_serializers', '~>0.10.0.rc3'
 gem 'rack-cors'
 
+gem 'kaminari'
 gem 'chunky_png'
 
 group :development do
