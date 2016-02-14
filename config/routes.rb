@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  mount_ember_app :frontend, to: "/"
+
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
 end
