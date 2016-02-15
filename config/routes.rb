@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pictures, only: [ :index, :show ]
       resources :bitmaps, only: [ :update ]
+
+      resources :adventures
     end
   end
 
