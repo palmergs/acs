@@ -1,6 +1,8 @@
 class Region < ApplicationRecord
 
   belongs_to :map
+  
+  has_many :rooms
 
   has_one :adventure, through: :map
 

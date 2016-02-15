@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :adventures
       resources :maps
       resources :regions
+      resources :rooms
     end
   end
 
