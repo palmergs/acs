@@ -6,7 +6,7 @@ class Adventure < ApplicationRecord
   ACCESS_PRIVATE = 'private'
   ACCESS_PUBLIC = 'public'
 
-  has_many :maps
+  has_many :maps, dependent: :destroy
 
   before_validation do
     self.description = '' unless self.description.present?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215172440) do
+ActiveRecord::Schema.define(version: 20160215205157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 20160215172440) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["slug"], name: "index_pictures_on_slug", using: :btree
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.integer  "map_id",                       null: false
+    t.string   "name",                         null: false
+    t.text     "description",     default: "", null: false
+    t.integer  "width",           default: 40, null: false
+    t.integer  "height",          default: 40, null: false
+    t.integer  "x"
+    t.integer  "y"
+    t.integer  "tile_picture_id"
+    t.text     "enter"
+    t.text     "leave"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["map_id"], name: "index_regions_on_map_id", using: :btree
   end
 
 end

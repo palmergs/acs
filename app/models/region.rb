@@ -1,8 +1,8 @@
-class Map < ApplicationRecord
+class Region < ApplicationRecord
 
-  belongs_to :adventure
-  
-  has_many :regions, dependent: :destroy
+  belongs_to :map
+
+  has_one :adventure, through: :map
 
   validates :name, presence: true
   validates :width, numericality: { only_integer: true, greater_than: 2, less_than: 1000 }
