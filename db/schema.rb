@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215164637) do
+ActiveRecord::Schema.define(version: 20160215172440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20160215164637) do
     t.string   "access",                 default: "private", null: false
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.integer  "adventure_id",              null: false
+    t.string   "name",                      null: false
+    t.text     "description",  default: "", null: false
+    t.integer  "width",        default: 40, null: false
+    t.integer  "height",       default: 40, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["adventure_id"], name: "index_maps_on_adventure_id", using: :btree
   end
 
   create_table "pictures", force: :cascade do |t|

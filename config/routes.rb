@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :bitmaps, only: [ :update ]
 
       resources :adventures
+      resources :maps
     end
   end
 
