@@ -1,5 +1,6 @@
 class Terrain < ApplicationRecord
   include Concerns::HasName
+  include Concerns::HasDescription
 
   belongs_to :map
 
@@ -10,8 +11,4 @@ class Terrain < ApplicationRecord
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 100
   }
-
-  before_validation do
-    self.description = '' unless self.description.present?
-  end
 end

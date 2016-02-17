@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
   include Concerns::HasName
+  include Concerns::HasDescription
 
   belongs_to :region
   has_one :map, through: :region
@@ -10,10 +11,6 @@ class Room < ApplicationRecord
   validates :x, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :y, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validate :validate_fits_in_region, :validate_does_not_overlap
-
-  before_validation do
-    self.description = '' unless self.description.present?
-  end
 
   def x2
     self.x + self.width

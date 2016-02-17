@@ -1,5 +1,6 @@
 class TilePicture < ApplicationRecord
   include Concerns::HasName
+  include Concerns::HasDescription
 
   SETTING_FANTASY = "Fantasy"
   SETTING_SCIFI = "Science Fiction"
@@ -15,7 +16,6 @@ class TilePicture < ApplicationRecord
 
   belongs_to :adventure
 
-  before_validation do
-    self.description = '' unless self.description.present?
-  end
+  has_many :things
+  has_many :terrains
 end

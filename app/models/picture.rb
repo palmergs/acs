@@ -1,6 +1,7 @@
 require 'slug_support'
 
 class Picture < ApplicationRecord
+  include Concerns::HasDescription
 
   HEIGHT = 64
   WIDTH = 48
@@ -13,7 +14,6 @@ class Picture < ApplicationRecord
 
   before_validation do
     self.slug = SlugSupport.slugify(self.name) unless self.slug.present?
-    self.description = '' unless self.description.present?
   end
 
 end
