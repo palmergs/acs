@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215210802) do
+ActiveRecord::Schema.define(version: 20160215231412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,31 @@ ActiveRecord::Schema.define(version: 20160215210802) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["region_id"], name: "index_rooms_on_region_id", using: :btree
+  end
+
+  create_table "terrains", force: :cascade do |t|
+    t.integer  "map_id",                                   null: false
+    t.string   "name",             limit: 63,              null: false
+    t.text     "description",                 default: "", null: false
+    t.integer  "tile_picture_id",                          null: false
+    t.integer  "encounter_chance",            default: 0,  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["map_id"], name: "index_terrains_on_map_id", using: :btree
+  end
+
+  create_table "tile_pictures", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "adventure_id"
+    t.string   "name",         limit: 63,              null: false
+    t.text     "description",             default: "", null: false
+    t.string   "path",                                 null: false
+    t.string   "category",     limit: 31,              null: false
+    t.string   "setting",      limit: 31,              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["adventure_id"], name: "index_tile_pictures_on_adventure_id", using: :btree
+    t.index ["user_id"], name: "index_tile_pictures_on_user_id", using: :btree
   end
 
 end
