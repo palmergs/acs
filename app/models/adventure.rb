@@ -8,6 +8,8 @@ class Adventure < ApplicationRecord
 
   has_many :maps, dependent: :destroy
 
+  has_many :tile_pictures, dependent: :destroy
+
   before_validation do
     self.description = '' unless self.description.present?
     self.access = ACCESS_PRIVATE unless self.access.present?
