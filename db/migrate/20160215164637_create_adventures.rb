@@ -4,8 +4,8 @@ class CreateAdventures < ActiveRecord::Migration[5.0]
       t.string :name,           null: false, limit: 63
       t.text :description,      null: false, default: ''
       t.text :intro
-      t.string :rating,         null: false, default: Adventure::RATING_GENERAL
-      t.string :access,         null: false, default: Adventure::ACCESS_PRIVATE
+      t.string :rating,         null: false, limit: 31, default: Adventure::RATING_GENERAL
+      t.string :access,         null: false, limit: 31, default: Adventure::ACCESS_PRIVATE
 
       t.timestamps
     end

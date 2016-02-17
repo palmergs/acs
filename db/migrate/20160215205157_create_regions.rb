@@ -2,7 +2,7 @@ class CreateRegions < ActiveRecord::Migration[5.0]
   def change
     create_table :regions do |t|
       t.integer :map_id,    null: false, index: true
-      t.string :name,       null: false
+      t.string :name,       null: false, limit: 63
       t.text :description,  null: false, default: ''
       t.integer :width,     null: false, default: 40
       t.integer :height,    null: false, default: 40
