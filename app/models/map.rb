@@ -1,4 +1,5 @@
 class Map < ApplicationRecord
+  include Concerns::HasName
 
   belongs_to :adventure
 

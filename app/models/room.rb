@@ -1,4 +1,5 @@
 class Room < ApplicationRecord
+  include Concerns::HasName
 
   belongs_to :region
   has_one :map, through: :region

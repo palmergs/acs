@@ -1,4 +1,5 @@
 class Region < ApplicationRecord
+  include Concerns::HasName
 
   belongs_to :map
 

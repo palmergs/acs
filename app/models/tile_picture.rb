@@ -1,4 +1,5 @@
 class TilePicture < ApplicationRecord
+  include Concerns::HasName
 
   SETTING_FANTASY = "Fantasy"
   SETTING_SCIFI = "Science Fiction"

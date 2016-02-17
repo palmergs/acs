@@ -1,4 +1,5 @@
 class Adventure < ApplicationRecord
+  include Concerns::HasName
 
   RATING_GENERAL = 'general'
   RATING_RESTRICTED = 'restricted'
