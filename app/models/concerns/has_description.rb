@@ -1,6 +1,6 @@
 module Concerns
   module HasDescription
-    include ActiveSupport::Concern
+    extend ActiveSupport::Concern
 
     included do
       before_validation do
