@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217130935) do
+ActiveRecord::Schema.define(version: 20160218133505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,35 @@ ActiveRecord::Schema.define(version: 20160217130935) do
     t.string   "access",                 default: "private", null: false
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+  end
+
+  create_table "creatures", force: :cascade do |t|
+    t.string   "type",                                   null: false
+    t.integer  "adventure_id",                           null: false
+    t.integer  "tile_picture_id",                        null: false
+    t.string   "name",                                   null: false
+    t.text     "description",     default: "",           null: false
+    t.integer  "speed",           default: 6,            null: false
+    t.integer  "life_force",      default: 10,           null: false
+    t.integer  "constitution",    default: 10,           null: false
+    t.integer  "power",           default: 10,           null: false
+    t.integer  "wisdom",          default: 10,           null: false
+    t.integer  "strength",        default: 10,           null: false
+    t.integer  "size",            default: 10,           null: false
+    t.integer  "dexterity",       default: 10,           null: false
+    t.integer  "missile_skill",   default: 10,           null: false
+    t.integer  "armor_skill",     default: 0,            null: false
+    t.integer  "dodge_skill",     default: 25,           null: false
+    t.integer  "melee_skill",     default: 25,           null: false
+    t.integer  "parry_skill",     default: 25,           null: false
+    t.string   "magical_defense", default: "none",       null: false
+    t.string   "personality",     default: "fighter",    null: false
+    t.string   "outlook",         default: "aggressive", null: false
+    t.string   "alliance",        default: "enemy",      null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["adventure_id"], name: "index_creatures_on_adventure_id", using: :btree
+    t.index ["tile_picture_id"], name: "index_creatures_on_tile_picture_id", using: :btree
   end
 
   create_table "maps", force: :cascade do |t|
