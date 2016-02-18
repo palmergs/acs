@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215231412) do
+ActiveRecord::Schema.define(version: 20160217130935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,33 @@ ActiveRecord::Schema.define(version: 20160215231412) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.index ["map_id"], name: "index_terrains_on_map_id", using: :btree
+  end
+
+  create_table "things", force: :cascade do |t|
+    t.string   "type",            limit: 63,                 null: false
+    t.integer  "adventure_id",                               null: false
+    t.integer  "tile_picture_id",                            null: false
+    t.string   "activate_on",     limit: 31
+    t.integer  "spell_id"
+    t.string   "name",            limit: 63,                 null: false
+    t.text     "description",                default: "",    null: false
+    t.integer  "weight",                     default: 0,     null: false
+    t.integer  "value",                      default: 0,     null: false
+    t.boolean  "disappear",                  default: true,  null: false
+    t.integer  "power",                      default: 0,     null: false
+    t.integer  "attack_adj",                 default: 0,     null: false
+    t.integer  "breakability",               default: 0,     null: false
+    t.boolean  "magic",                      default: false, null: false
+    t.boolean  "owner_only",                 default: false, null: false
+    t.integer  "range",                      default: 0,     null: false
+    t.text     "pickup"
+    t.text     "drop"
+    t.integer  "max_carry",                  default: 25000, null: false
+    t.integer  "max_stack",                  default: 1,     null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["adventure_id"], name: "index_things_on_adventure_id", using: :btree
+    t.index ["tile_picture_id"], name: "index_things_on_tile_picture_id", using: :btree
   end
 
   create_table "tile_pictures", force: :cascade do |t|
