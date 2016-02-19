@@ -16,4 +16,7 @@ class Creature < ApplicationRecord
   ALLIANCE_FRIEND = 'friend'
   ALLIANCE_NEUTRAL = 'neutral'
   ALLIANCE_THIEF = 'thief'
+
+  belongs_to :adventure
+  belongs_to :tile_picture
 end
