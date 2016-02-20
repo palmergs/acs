@@ -6,6 +6,12 @@ class Room < ApplicationRecord
   has_one :map, through: :region
   has_one :adventure, through: :map
 
+  has_many :room_creatures, dependent: :destroy
+  has_many :creatuers, through: :room_creatures
+
+  has_many :room_things, dependent: :destroy
+  has_many :things, through: :room_things
+
   validates :width, numericality: { only_integer: true, greater_than: 2, less_than: 1000 }
   validates :height, numericality: { only_integer: true, greater_than: 2, less_than: 1000 }
   validates :x, numericality: { only_integer: true, greater_than_or_equal_to: 0 }

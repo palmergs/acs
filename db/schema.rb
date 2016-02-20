@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219143139) do
+ActiveRecord::Schema.define(version: 20160219144233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,34 @@ ActiveRecord::Schema.define(version: 20160219143139) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["map_id"], name: "index_regions_on_map_id", using: :btree
+  end
+
+  create_table "room_creatures", force: :cascade do |t|
+    t.integer  "room_id",     null: false
+    t.integer  "creature_id", null: false
+    t.integer  "x",           null: false
+    t.integer  "y",           null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["creature_id"], name: "index_room_creatures_on_creature_id", using: :btree
+    t.index ["room_id"], name: "index_room_creatures_on_room_id", using: :btree
+    t.index ["x"], name: "index_room_creatures_on_x", using: :btree
+    t.index ["y"], name: "index_room_creatures_on_y", using: :btree
+  end
+
+  create_table "room_things", force: :cascade do |t|
+    t.integer  "room_id",    null: false
+    t.integer  "thing_id",   null: false
+    t.integer  "x",          null: false
+    t.integer  "y",          null: false
+    t.integer  "z",          null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_room_things_on_room_id", using: :btree
+    t.index ["thing_id"], name: "index_room_things_on_thing_id", using: :btree
+    t.index ["x"], name: "index_room_things_on_x", using: :btree
+    t.index ["y"], name: "index_room_things_on_y", using: :btree
+    t.index ["z"], name: "index_room_things_on_z", using: :btree
   end
 
   create_table "rooms", force: :cascade do |t|
