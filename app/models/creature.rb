@@ -19,4 +19,6 @@ class Creature < ApplicationRecord
 
   belongs_to :adventure
   belongs_to :tile_picture
+
+  has_many :room_creatures, dependent: :destroy
 end
