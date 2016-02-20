@@ -8,5 +8,8 @@ class Thing < ApplicationRecord
 
   belongs_to :adventure
   belongs_to :tile_picture
+  belongs_to :spell, optional: true
+
+  has_many :room_things, dependent: :destroy
 
 end

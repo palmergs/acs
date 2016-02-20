@@ -1,7 +1,7 @@
 class CreateThings < ActiveRecord::Migration[5.0]
   def change
     create_table :things do |t|
-      t.string :type,             null: false, limit: 63
+      t.string :type,             null: false, limit: 31
       t.integer :adventure_id,    null: false, index: true
       t.integer :tile_picture_id, null: false, index: true
       t.string :activate_on,      limit: 31
@@ -21,6 +21,7 @@ class CreateThings < ActiveRecord::Migration[5.0]
       t.text :drop
       t.integer :max_carry,       null: false, default: 25000
       t.integer :max_stack,       null: false, default: 1
+      t.boolean :buyable,         null: false, default: false
 
       t.timestamps
     end

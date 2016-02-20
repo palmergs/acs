@@ -1,10 +1,10 @@
 class CreateCreatures < ActiveRecord::Migration[5.0]
   def change
     create_table :creatures do |t|
-      t.string :type,             null: false
+      t.string :type,             null: false, limit: 31, index: true
       t.integer :adventure_id,    null: false, index: true
       t.integer :tile_picture_id, null: false, index: true
-      t.string :name,             null: false
+      t.string :name,             null: false, limit: 63
       t.text :description,        null: false, default: ''
       t.integer :speed,           null: false, default: 6
       t.integer :life_force,      null: false, default: 10

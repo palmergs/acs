@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219144233) do
+ActiveRecord::Schema.define(version: 20160220150121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,30 @@ ActiveRecord::Schema.define(version: 20160219144233) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["region_id"], name: "index_rooms_on_region_id", using: :btree
+  end
+
+  create_table "spells", force: :cascade do |t|
+    t.string   "type",         limit: 31,              null: false
+    t.integer  "adventure_id",                         null: false
+    t.string   "name",         limit: 63,              null: false
+    t.text     "description",             default: "", null: false
+    t.text     "activate"
+    t.integer  "creature_id"
+    t.integer  "thing_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["adventure_id"], name: "index_spells_on_adventure_id", using: :btree
+    t.index ["type"], name: "index_spells_on_type", using: :btree
+  end
+
+  create_table "store_things", force: :cascade do |t|
+    t.integer  "store_id",               null: false
+    t.integer  "thing_id",               null: false
+    t.integer  "count",      default: 1, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["store_id"], name: "index_store_things_on_store_id", using: :btree
+    t.index ["thing_id"], name: "index_store_things_on_thing_id", using: :btree
   end
 
   create_table "terrain_creatures", force: :cascade do |t|
