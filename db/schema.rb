@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220150121) do
+ActiveRecord::Schema.define(version: 20160220151234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20160220150121) do
     t.string   "access",                 default: "private", null: false
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+  end
+
+  create_table "creature_things", force: :cascade do |t|
+    t.integer  "creature_id",                 null: false
+    t.integer  "thing_id",                    null: false
+    t.integer  "count",       default: 1,     null: false
+    t.boolean  "equipped",    default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["creature_id"], name: "index_creature_things_on_creature_id", using: :btree
+    t.index ["thing_id"], name: "index_creature_things_on_thing_id", using: :btree
   end
 
   create_table "creatures", force: :cascade do |t|

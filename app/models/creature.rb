@@ -21,4 +21,8 @@ class Creature < ApplicationRecord
   belongs_to :tile_picture
 
   has_many :room_creatures, dependent: :destroy
+  has_many :rooms, through: :room_creatures
+
+  has_many :creature_things, dependent: :destroy
+  has_many :things, through: :creature_things
 end

@@ -11,5 +11,9 @@ class Thing < ApplicationRecord
   belongs_to :spell, optional: true
 
   has_many :room_things, dependent: :destroy
+  has_many :rooms, through: :room_things
+
+  has_many :creature_things, dependent: :destroy
+  has_many :creatures, through: :creature_things
 
 end
