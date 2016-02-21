@@ -18,12 +18,13 @@ class Room < ApplicationRecord
   validates :y, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validate :validate_fits_in_region, :validate_does_not_overlap
 
+  # Lower right coordinates
   def x2
-    self.x + self.width
+    self.x + self.width - 1
   end
 
   def y2
-    self.y + self.height
+    self.y + self.height - 1
   end
 
   def validate_fits_in_region
@@ -44,17 +45,17 @@ class Room < ApplicationRecord
   def overlaps? other
 
     # surrounds completely
-    return true if x <= other.x && y <= other.y && x2 > other.x2 && y2 > other.y2
+    return true if x <= other.x && y <= other.y && x2 >= other.x2 && y2 >= other.y2
 
     # left edge
-    if x >= other.x && x < other.x2
-      return true if y >= other.y && y < other.y2
-      return true if y2 >= other.y && y2 < other.y2
+    if x >= other.x && x <= other.x2
+      return true if y >= other.y && y <= other.y2
+      return true if y2 >= other.y && y2 <= other.y2
     end
 
     # right edge
-    if x2 >= other.x && x2 < other.x2
-      return true if y >= other.y && y < other.y2
+    if x2 >= other.x && x2 <= other.x2
+      return true if y >= other.y && y <= other.y2
       return true if y2 >= other.y && y2 <= other.y2
     end
 
