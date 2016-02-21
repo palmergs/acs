@@ -37,7 +37,9 @@ class Room < ApplicationRecord
   def validate_does_not_overlap
     region.rooms.each do |other|
       if other != self
-        errors.add(:base, "Room overlaps another room.") if overlaps?(other)
+        if overlaps?(other)
+          errors.add(:base, "Room overlaps another room.")
+        end
       end
     end
   end
