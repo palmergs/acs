@@ -19,10 +19,10 @@ class CreateCreatures < ActiveRecord::Migration[5.0]
       t.integer :dodge_skill,     null: false, default: 25
       t.integer :melee_skill,     null: false, default: 25
       t.integer :parry_skill,     null: false, default: 25
-      t.string :magical_defense,  null: false, default: Creature::MAGIC_NONE
-      t.string :personality,      null: false, default: Creature::PERSONALITY_FIGHTER
-      t.string :outlook,          null: false, default: Creature::OUTLOOK_AGGRESSIVE
-      t.string :alliance,         null: false, default: Creature::ALLIANCE_ENEMY
+      t.string :magical_defense,  null: false, limit: 15, default: Creature::MAGIC_NONE
+      t.string :personality,      null: false, limit: 15, default: Creature::PERSONALITY_BRAVE
+      t.string :outlook,          null: false, limit: 15, default: Creature::OUTLOOK_AGGRESSIVE
+      t.string :alliance,         null: false, limit: 15, default: Creature::ALLIANCE_ENEMY
 
       t.timestamps
     end

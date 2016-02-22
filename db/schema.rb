@@ -16,12 +16,44 @@ ActiveRecord::Schema.define(version: 20160220151234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "actor", force: :cascade do |t|
+    t.integer  "room_id",                                           null: false
+    t.integer  "creature_id",                                       null: false
+    t.integer  "x",                                                 null: false
+    t.integer  "y",                                                 null: false
+    t.integer  "speed",                      default: 0,            null: false
+    t.integer  "life_force",                 default: 0,            null: false
+    t.integer  "life_force_temp",            default: 0,            null: false
+    t.integer  "constitution",               default: 0,            null: false
+    t.integer  "power",                      default: 0,            null: false
+    t.integer  "power_temp",                 default: 0,            null: false
+    t.integer  "wisdom",                     default: 0,            null: false
+    t.integer  "strength",                   default: 0,            null: false
+    t.integer  "encumbrance",                default: 0,            null: false
+    t.integer  "size",                       default: 0,            null: false
+    t.integer  "dexterity",                  default: 0,            null: false
+    t.integer  "missile_skill",              default: 0,            null: false
+    t.integer  "armor_skill",                default: 0,            null: false
+    t.integer  "dodge_skill",                default: 0,            null: false
+    t.integer  "melee_skill",                default: 0,            null: false
+    t.string   "magical_defense", limit: 15, default: "none",       null: false
+    t.string   "personality",     limit: 15, default: "brave",      null: false
+    t.string   "outlook",         limit: 15, default: "aggressive", null: false
+    t.string   "alliance",        limit: 15, default: "enemy",      null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.index ["creature_id"], name: "index_actor_on_creature_id", using: :btree
+    t.index ["room_id"], name: "index_actor_on_room_id", using: :btree
+    t.index ["x"], name: "index_actor_on_x", using: :btree
+    t.index ["y"], name: "index_actor_on_y", using: :btree
+  end
+
   create_table "adventures", force: :cascade do |t|
     t.string   "name",        limit: 63,                     null: false
     t.text     "description",            default: "",        null: false
     t.text     "intro"
-    t.string   "rating",                 default: "general", null: false
-    t.string   "access",                 default: "private", null: false
+    t.string   "rating",      limit: 31, default: "general", null: false
+    t.string   "access",      limit: 31, default: "private", null: false
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
   end
@@ -38,42 +70,63 @@ ActiveRecord::Schema.define(version: 20160220151234) do
   end
 
   create_table "creatures", force: :cascade do |t|
-    t.string   "type",                                   null: false
-    t.integer  "adventure_id",                           null: false
-    t.integer  "tile_picture_id",                        null: false
-    t.string   "name",                                   null: false
-    t.text     "description",     default: "",           null: false
-    t.integer  "speed",           default: 6,            null: false
-    t.integer  "life_force",      default: 10,           null: false
-    t.integer  "constitution",    default: 10,           null: false
-    t.integer  "power",           default: 10,           null: false
-    t.integer  "wisdom",          default: 10,           null: false
-    t.integer  "strength",        default: 10,           null: false
-    t.integer  "size",            default: 10,           null: false
-    t.integer  "dexterity",       default: 10,           null: false
-    t.integer  "missile_skill",   default: 10,           null: false
-    t.integer  "armor_skill",     default: 0,            null: false
-    t.integer  "dodge_skill",     default: 25,           null: false
-    t.integer  "melee_skill",     default: 25,           null: false
-    t.integer  "parry_skill",     default: 25,           null: false
-    t.string   "magical_defense", default: "none",       null: false
-    t.string   "personality",     default: "fighter",    null: false
-    t.string   "outlook",         default: "aggressive", null: false
-    t.string   "alliance",        default: "enemy",      null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "type",            limit: 31,                        null: false
+    t.integer  "adventure_id",                                      null: false
+    t.integer  "tile_picture_id",                                   null: false
+    t.string   "name",            limit: 63,                        null: false
+    t.text     "description",                default: "",           null: false
+    t.integer  "speed",                      default: 6,            null: false
+    t.integer  "life_force",                 default: 10,           null: false
+    t.integer  "constitution",               default: 10,           null: false
+    t.integer  "power",                      default: 10,           null: false
+    t.integer  "wisdom",                     default: 10,           null: false
+    t.integer  "strength",                   default: 10,           null: false
+    t.integer  "size",                       default: 10,           null: false
+    t.integer  "dexterity",                  default: 10,           null: false
+    t.integer  "missile_skill",              default: 10,           null: false
+    t.integer  "armor_skill",                default: 0,            null: false
+    t.integer  "dodge_skill",                default: 25,           null: false
+    t.integer  "melee_skill",                default: 25,           null: false
+    t.integer  "parry_skill",                default: 25,           null: false
+    t.string   "magical_defense", limit: 15, default: "none",       null: false
+    t.string   "personality",     limit: 15, default: "brave",      null: false
+    t.string   "outlook",         limit: 15, default: "aggressive", null: false
+    t.string   "alliance",        limit: 15, default: "enemy",      null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.index ["adventure_id"], name: "index_creatures_on_adventure_id", using: :btree
     t.index ["tile_picture_id"], name: "index_creatures_on_tile_picture_id", using: :btree
+    t.index ["type"], name: "index_creatures_on_type", using: :btree
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer  "thing_id",            null: false
+    t.integer  "room_id"
+    t.integer  "actor_id"
+    t.integer  "x",                   null: false
+    t.integer  "y",                   null: false
+    t.integer  "z",                   null: false
+    t.text     "activate_message"
+    t.integer  "acts_on_thing_id"
+    t.integer  "acts_on_creature_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["actor_id"], name: "index_items_on_actor_id", using: :btree
+    t.index ["room_id"], name: "index_items_on_room_id", using: :btree
+    t.index ["thing_id"], name: "index_items_on_thing_id", using: :btree
+    t.index ["x"], name: "index_items_on_x", using: :btree
+    t.index ["y"], name: "index_items_on_y", using: :btree
+    t.index ["z"], name: "index_items_on_z", using: :btree
   end
 
   create_table "maps", force: :cascade do |t|
-    t.integer  "adventure_id",              null: false
-    t.string   "name",                      null: false
-    t.text     "description",  default: "", null: false
-    t.integer  "width",        default: 40, null: false
-    t.integer  "height",       default: 40, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "adventure_id",                         null: false
+    t.string   "name",         limit: 63,              null: false
+    t.text     "description",             default: "", null: false
+    t.integer  "width",                   default: 40, null: false
+    t.integer  "height",                  default: 40, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["adventure_id"], name: "index_maps_on_adventure_id", using: :btree
   end
 
@@ -89,74 +142,32 @@ ActiveRecord::Schema.define(version: 20160220151234) do
   end
 
   create_table "regions", force: :cascade do |t|
-    t.integer  "map_id",                       null: false
-    t.string   "name",                         null: false
-    t.text     "description",     default: "", null: false
-    t.integer  "width",           default: 40, null: false
-    t.integer  "height",          default: 40, null: false
+    t.integer  "map_id",                                  null: false
+    t.string   "name",            limit: 63,              null: false
+    t.text     "description",                default: "", null: false
+    t.integer  "width",                      default: 40, null: false
+    t.integer  "height",                     default: 40, null: false
     t.integer  "x"
     t.integer  "y"
     t.integer  "tile_picture_id"
     t.text     "enter"
     t.text     "leave"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["map_id"], name: "index_regions_on_map_id", using: :btree
   end
 
-  create_table "room_creatures", force: :cascade do |t|
-    t.integer  "room_id",     null: false
-    t.integer  "creature_id", null: false
-    t.integer  "x",           null: false
-    t.integer  "y",           null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["creature_id"], name: "index_room_creatures_on_creature_id", using: :btree
-    t.index ["room_id"], name: "index_room_creatures_on_room_id", using: :btree
-    t.index ["x"], name: "index_room_creatures_on_x", using: :btree
-    t.index ["y"], name: "index_room_creatures_on_y", using: :btree
-  end
-
-  create_table "room_things", force: :cascade do |t|
-    t.integer  "room_id",    null: false
-    t.integer  "thing_id",   null: false
-    t.integer  "x",          null: false
-    t.integer  "y",          null: false
-    t.integer  "z",          null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_room_things_on_room_id", using: :btree
-    t.index ["thing_id"], name: "index_room_things_on_thing_id", using: :btree
-    t.index ["x"], name: "index_room_things_on_x", using: :btree
-    t.index ["y"], name: "index_room_things_on_y", using: :btree
-    t.index ["z"], name: "index_room_things_on_z", using: :btree
-  end
-
   create_table "rooms", force: :cascade do |t|
-    t.integer  "region_id",                null: false
-    t.string   "name",                     null: false
-    t.text     "description", default: "", null: false
-    t.integer  "width",       default: 10, null: false
-    t.integer  "height",      default: 10, null: false
-    t.integer  "x",                        null: false
-    t.integer  "y",                        null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "region_id",                           null: false
+    t.string   "name",        limit: 63,              null: false
+    t.text     "description",            default: "", null: false
+    t.integer  "width",                  default: 10, null: false
+    t.integer  "height",                 default: 10, null: false
+    t.integer  "x",                                   null: false
+    t.integer  "y",                                   null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["region_id"], name: "index_rooms_on_region_id", using: :btree
-  end
-
-  create_table "spells", force: :cascade do |t|
-    t.string   "type",         limit: 31,              null: false
-    t.integer  "adventure_id",                         null: false
-    t.string   "name",         limit: 63,              null: false
-    t.text     "description",             default: "", null: false
-    t.text     "activate"
-    t.integer  "creature_id"
-    t.integer  "thing_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.index ["adventure_id"], name: "index_spells_on_adventure_id", using: :btree
-    t.index ["type"], name: "index_spells_on_type", using: :btree
   end
 
   create_table "store_things", force: :cascade do |t|
@@ -191,28 +202,34 @@ ActiveRecord::Schema.define(version: 20160220151234) do
   end
 
   create_table "things", force: :cascade do |t|
-    t.string   "type",            limit: 63,                 null: false
-    t.integer  "adventure_id",                               null: false
-    t.integer  "tile_picture_id",                            null: false
-    t.string   "activate_on",     limit: 31
-    t.integer  "spell_id"
-    t.string   "name",            limit: 63,                 null: false
-    t.text     "description",                default: "",    null: false
-    t.integer  "weight",                     default: 0,     null: false
-    t.integer  "value",                      default: 0,     null: false
-    t.boolean  "disappear",                  default: true,  null: false
-    t.integer  "power",                      default: 0,     null: false
-    t.integer  "attack_adj",                 default: 0,     null: false
-    t.integer  "breakability",               default: 0,     null: false
-    t.boolean  "magic",                      default: false, null: false
-    t.boolean  "owner_only",                 default: false, null: false
-    t.integer  "range",                      default: 0,     null: false
+    t.string   "type",                limit: 31,                  null: false
+    t.integer  "adventure_id",                                    null: false
+    t.integer  "tile_picture_id",                                 null: false
+    t.string   "name",                limit: 63,                  null: false
+    t.text     "description",                    default: "",     null: false
+    t.integer  "weight",                         default: 0,      null: false
+    t.integer  "value",                          default: 0,      null: false
+    t.boolean  "disappear",                      default: true,   null: false
+    t.integer  "power",                          default: 0,      null: false
+    t.integer  "attack_adj",                     default: 0,      null: false
+    t.integer  "breakability",                   default: 0,      null: false
+    t.boolean  "magic",                          default: false,  null: false
+    t.boolean  "owner_only",                     default: false,  null: false
+    t.integer  "range",                          default: 0,      null: false
     t.text     "pickup"
     t.text     "drop"
-    t.integer  "max_carry",                  default: 25000, null: false
-    t.integer  "max_stack",                  default: 1,     null: false
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.integer  "max_carry",                      default: 25000,  null: false
+    t.integer  "max_stack",                      default: 1,      null: false
+    t.boolean  "buyable",                        default: false,  null: false
+    t.string   "activate_on",         limit: 31, default: "none", null: false
+    t.integer  "power_cost",                     default: 0,      null: false
+    t.string   "spell_type"
+    t.string   "activate_summary"
+    t.text     "activate_message"
+    t.integer  "acts_on_thing_id"
+    t.integer  "acts_on_creature_id"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["adventure_id"], name: "index_things_on_adventure_id", using: :btree
     t.index ["tile_picture_id"], name: "index_things_on_tile_picture_id", using: :btree
   end
