@@ -1,10 +1,8 @@
 FactoryGirl.define do
-  factory :room_thing do
+  factory :actors do
     room
-    thing
+    creature
     x 1
     y 1
-    z 1
   end
-
 end
