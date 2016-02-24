@@ -1,0 +1,3 @@
+class MagicItem < Thing
+
+end
