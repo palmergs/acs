@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :actors do
+  factory :actor do
     room
     creature
     x 1

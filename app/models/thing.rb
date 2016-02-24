@@ -13,7 +13,7 @@ class Thing < ApplicationRecord
   belongs_to :spell, optional: true
 
   has_many :items, dependent: :destroy
-  has_many :rooms, through: :room_things
+  has_many :rooms, through: :items
 
   has_many :creature_things, dependent: :destroy
   has_many :creatures, through: :creature_things

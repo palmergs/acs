@@ -8,7 +8,7 @@ class Creature < ApplicationRecord
   belongs_to :tile_picture
 
   has_many :actors, dependent: :destroy
-  has_many :rooms, through: :room_creatures
+  has_many :rooms, through: :actors
 
   has_many :creature_things, dependent: :destroy
   has_many :things, through: :creature_things

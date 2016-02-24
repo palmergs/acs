@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160220151234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "actor", force: :cascade do |t|
+  create_table "actors", force: :cascade do |t|
     t.integer  "room_id",                                           null: false
     t.integer  "creature_id",                                       null: false
     t.integer  "x",                                                 null: false
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20160220151234) do
     t.string   "alliance",        limit: 15, default: "enemy",      null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.index ["creature_id"], name: "index_actor_on_creature_id", using: :btree
-    t.index ["room_id"], name: "index_actor_on_room_id", using: :btree
-    t.index ["x"], name: "index_actor_on_x", using: :btree
-    t.index ["y"], name: "index_actor_on_y", using: :btree
+    t.index ["creature_id"], name: "index_actors_on_creature_id", using: :btree
+    t.index ["room_id"], name: "index_actors_on_room_id", using: :btree
+    t.index ["x"], name: "index_actors_on_x", using: :btree
+    t.index ["y"], name: "index_actors_on_y", using: :btree
   end
 
   create_table "adventures", force: :cascade do |t|
