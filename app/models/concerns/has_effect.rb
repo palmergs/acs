@@ -23,6 +23,8 @@ module Concerns
     EFFECT_RID_ROOM = "Rid Room Of All"
     EFFECT_ADD_ONE_TO_ROOM = "Add to Room One"
     EFFECT_ACTIVATE_ALL_THINGS = "Activate All Things"
+    EFFECT_PREVENT_ACCESS = "Prevent Access"
+    EFFECT_ALLOW_ACCESS = "Allow Access"
 
     included do
       has_one :affected_thing, class_name: 'Thing', foreign_key: :acts_on_thing_id, primary_key: :id

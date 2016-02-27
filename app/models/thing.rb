@@ -22,7 +22,7 @@ class Thing < ApplicationRecord
   has_many :creature_things, dependent: :destroy
   has_many :creatures, through: :creature_things
 
-  def activate_on
+  def can_activate_on
     [ ACTIVATE_NONE ]
   end
 
