@@ -1,0 +1,3 @@
+class MagicSpell < Thing
+
+end
