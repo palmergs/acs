@@ -1,0 +1,3 @@
+class FixedThing < Thing
+
+end

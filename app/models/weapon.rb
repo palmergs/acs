@@ -1,4 +1,4 @@
-class Weapon < Thing
+class Weapon < MagicItem
 
   def missile_weapon?
     range > 0

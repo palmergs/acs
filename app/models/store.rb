@@ -1,3 +1,3 @@
-class Store < Thing
+class Store < FixedThing
 
 end

@@ -1,6 +1,6 @@
-class Space < Thing
+class Space < FixedThing
 
-  def activate_on
+  def can_activate_on
     [ ACTIVATE_ENTER, ACTIVATE_LEAVE ]
   end
 

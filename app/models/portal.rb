@@ -1,4 +1,4 @@
-class Portal < Thing
+class Portal < FixedThing
 
   def can_activate_on
     [ ACTIVATE_ENTER ]

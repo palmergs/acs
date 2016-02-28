@@ -1,3 +1,3 @@
-class Armor < Thing
+class Armor < MagicItem
 
 end
