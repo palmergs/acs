@@ -28,7 +28,7 @@ module Concerns
       elsif wisdom < 7
         false
       else
-        rand(wisdom - 5) > 0
+        rand < (0.1111 * (wisdom - 6))
       end
     end
 

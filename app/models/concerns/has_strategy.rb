@@ -49,28 +49,36 @@ module Concerns
     end
 
     def strategy
-      if figher?
+      if fighter?
         fighter_strategy
       else
         slinker_strategy
       end
     end
 
-    def fighter_stategy
+    def fighter_strategy
       case alliance
       when ALLIANCE_ENEMY
+        Strategy::EnemyFighter.new(self)
       when ALLIANCE_FRIEND
+        Strategy::FriendlyFighter.new(self)
       when ALLIANCE_NEUTRAL
+        Strategy::NeutralFighter.new(self)
       when ALLIANCE_THIEF
+        Strategy::ThiefFighter.new(self)
       end
     end
 
     def slinker_strategy
       case alliance
       when ALLIANCE_ENEMY
+        Strategy::EnemySlinker.new(self)
       when ALLIANCE_FRIEND
+        Strategy::FriendlySlinker.new(self)
       when ALLIANCE_NEUTRAL
+        Strategy::NeutralSlinker.new(self)
       when ALLIANCE_THIEF
+        Strategy::ThiefSlinker.new(self)
       end
     end
   end
