@@ -18,6 +18,14 @@ class Room < ApplicationRecord
   validates :y, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validate :validate_fits_in_region, :validate_does_not_overlap
 
+  def actor_at location
+    actors.find_by(x: location.x, y: location.y)
+  end
+
+  def items_at location
+    items.where(x: location.x, y: location.y).order_by(z: :desc)
+  end
+
   # Lower right coordinates
   def x2
     self.x + self.width - 1
