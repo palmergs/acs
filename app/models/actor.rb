@@ -8,6 +8,14 @@ class Actor < ApplicationRecord
 
   has_many :items
 
+  def inventory
+    items.where(owner_only: false)
+  end
+
+  def powers
+    items.where(owner_only: true)
+  end
+
   def readied_weapon
     items.find_by(readied: true, type: 'Weapon')
   end
@@ -18,7 +26,7 @@ class Actor < ApplicationRecord
       old.update_attribute(readied: false) if old
       weapon.update_attribute(readied: true)
     end
-  end  
+  end
 
   def readied_armor
     items.find_by(readied: true, type: 'Armor')

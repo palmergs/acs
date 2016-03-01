@@ -37,6 +37,19 @@ class Location
     end
   end
 
+  def step_towards location
+    case direction_to(location)
+    when NORTH
+      Location.new(x, y - 1)
+    when SOUTH
+      Location.new(x, y + 1)
+    when EAST
+      Location.new(x + 1, y)
+    when WEST
+      Location.new(x - 1, y)
+    end
+  end
+
   def ==(o)
     o.respond_to?(:x) && o.respond_to?(:y) && o.x == x && o.y == y
   end

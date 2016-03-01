@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   include Concerns::HasEffect
-  
+  include Concerns::HasLocation
+
   belongs_to :thing
 
   # An item can be in a room; or carried by an actor
