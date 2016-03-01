@@ -19,8 +19,8 @@ class Location
   def adjacent? location
     return false unless exists? && location.exists?
 
-    diffx = Math.abs(x - location.x)
-    diffy = Math.abs(y - location.y)
+    diffx = (x - location.x).abs
+    diffy = (y - location.y).abs
     (diffx == 0 && diffy == 1) || (diffy == 0 && diffx == 1)
   end
 
@@ -30,7 +30,7 @@ class Location
 
     diffx = x - location.x
     diffy = y - location.y
-    if Math.abs(diffx) >= Math.abs(diffy)
+    if diffx.abs >= diffy.abs
       diffx > 0 ? WEST : EAST
     else
       diffy > 0 ? NORTH : SOUTH
@@ -48,6 +48,11 @@ class Location
     when WEST
       Location.new(x - 1, y)
     end
+  end
+
+  def distance_to location
+    dist = Math.sqrt((x - location.x)**2 + (y - location.y)**2)
+    dist.round
   end
 
   def ==(o)

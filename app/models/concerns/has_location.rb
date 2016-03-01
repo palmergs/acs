@@ -1,5 +1,5 @@
 module Concerns
-  class HasLocation
+  module HasLocation
     extend ActiveSupport::Concern
 
     included do
