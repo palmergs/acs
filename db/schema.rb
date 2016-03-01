@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220151234) do
+ActiveRecord::Schema.define(version: 20160301121936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,17 +100,18 @@ ActiveRecord::Schema.define(version: 20160220151234) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer  "thing_id",            null: false
+    t.integer  "thing_id",                            null: false
     t.integer  "room_id"
     t.integer  "actor_id"
-    t.integer  "x",                   null: false
-    t.integer  "y",                   null: false
-    t.integer  "z",                   null: false
+    t.integer  "x",                                   null: false
+    t.integer  "y",                                   null: false
+    t.integer  "z",                                   null: false
     t.text     "activate_message"
     t.integer  "acts_on_thing_id"
     t.integer  "acts_on_creature_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "readied",             default: false, null: false
     t.index ["actor_id"], name: "index_items_on_actor_id", using: :btree
     t.index ["room_id"], name: "index_items_on_room_id", using: :btree
     t.index ["thing_id"], name: "index_items_on_thing_id", using: :btree
