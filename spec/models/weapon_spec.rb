@@ -10,6 +10,10 @@ RSpec.describe Weapon, as: :model do
     expect(create(:weapon)).to be_persisted
   end
 
+  it 'is a subclass of Treasure' do
+    expect(build(:weapon)).to be_a Treasure
+  end
+
   context 'as a melee weapon' do
     let(:sword) { build(:weapon) }
     it 'is a melee weapon' do

@@ -10,8 +10,14 @@ RSpec.describe Space, as: :model do
     expect(create(:space)).to be_persisted
   end
 
+  it 'is a subclass of FixedThing' do
+    expect(build(:space)).to be_a FixedThing
+  end
+
   it 'has ENTER and LEAVE as activation events' do
     expect(build(:space).can_activate_on).to include(Thing::ACTIVATE_ENTER)
     expect(build(:space).can_activate_on).to include(Thing::ACTIVATE_LEAVE)
   end
+
+
 end
