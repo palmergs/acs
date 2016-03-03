@@ -25,6 +25,8 @@ class Actor < ApplicationRecord
       old = items.find_by(readied: true, type: 'Weapon')
       old.update_attribute(readied: false) if old
       weapon.update_attribute(readied: true)
+    else
+      fale
     end
   end
 
@@ -37,6 +39,8 @@ class Actor < ApplicationRecord
       old = items.find_by(readied: true, type: 'Armor')
       old.update_attribute(readied: false) if old
       armor.update_attribute(readied: true)
+    else
+      false
     end
   end
 end
