@@ -36,11 +36,11 @@ class Api::V1::TerrainsController < ApplicationController
   private
 
     def create_terrain_params
-      params.requires(:terrain).permit(:name, :description)
+      params.require(:terrain).permit(:name, :description)
     end
 
     def update_terrain_params
-      params.requires(:terrain).permit(:name, :description)
+      params.require(:terrain).permit(:name, :description)
     end
 
 end
