@@ -14,7 +14,7 @@ class Api::V1::CreaturesController < ApplicationController
     if @creature.save
       render json: @creature
     else
-      render json: @creature, status: :unprocessable_entity
+      render json: { errors: @creature.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::CreaturesController < ApplicationController
     if @create.update_attributes(update_creature_params)
       render json: @creature
     else
-      render json: @creature, status: :unprocessable_entity
+      render json: { errors: @creature.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

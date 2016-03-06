@@ -1,5 +1,8 @@
 class CreatureSerializer < ActiveModel::Serializer
-  attributes :id, :adventure_id,
+  attributes :type,
+      :id,
+      :adventure_id,
+      :tile_picture_id,
       :name,
       :description
 end
