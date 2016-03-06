@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :regions
       resources :rooms
       resources :terrains
+      resources :things
+      resources :creatures
     end
   end
 

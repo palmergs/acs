@@ -14,7 +14,8 @@ class Api::V1::ThingsController < ApplicationController
     if @thing.save
       render json: @thing
     else
-      render json: @thing, status: :unprocessable_entity
+      render json: { errors: @thing.errors.full_messages },
+          status: :unprocessable_entity
     end
   end
 
@@ -23,7 +24,8 @@ class Api::V1::ThingsController < ApplicationController
     if @thing.update_attributes(update_thing_params)
       render json: @thing
     else
-      render json: @thing, status: :unprocessable_entity
+      render json: { errors: @thing.errors.full_messages },
+          status: :unprocessable_entity
     end
   end
 
@@ -36,10 +38,16 @@ class Api::V1::ThingsController < ApplicationController
   private
 
     def create_thing_params
-      params.require(:thing).permit(:name, :description)
+      params.require(:thing).permit(:type,
+          :name,
+          :description,
+          :adventure_id,
+          :tile_picture_id)
     end
 
     def update_thing_params
-      params.require(:thing).permit(:name, :description)
+      params.require(:thing).permit(:name,
+          :description,
+          :tile_picture_id)
     end
 end
