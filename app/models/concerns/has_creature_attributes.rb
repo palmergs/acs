@@ -5,6 +5,7 @@ module Concerns
     MAGIC_NONE = 'none'
     MAGIC_HALF = 'half'
     MAGIC_FULL = 'full'
+    MAGICAL_DEFENSES = [ MAGIC_NONE, MAGIC_HALF, MAGIC_FULL ]
 
     SKILL_ARMOR = "Armor Skill"
     SKILL_DODGE = "Dodge Skill"

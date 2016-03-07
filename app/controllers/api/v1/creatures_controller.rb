@@ -40,12 +40,46 @@ class Api::V1::CreaturesController < ApplicationController
           :adventure_id,
           :tile_picture_id,
           :name,
-          :description)
+          :description,
+          :speed,
+          :life_force,
+          :constitution,
+          :power,
+          :wisdom,
+          :strength,
+          :size,
+          :dexterity,
+          :missile_skill,
+          :armor_skill,
+          :dodge_skill,
+          :melee_skill,
+          :parry_skill,
+          :magical_defense,
+          :personality,
+          :outlook,
+          :alliance)
     end
 
     def update_creature_params
       params.require(:creature).permit(:name,
           :description,
-          :tile_picture_id)
+          :tile_picture_id,
+          :speed,
+          :life_force,
+          :constitution,
+          :power,
+          :wisdom,
+          :strength,
+          :size,
+          :dexterity,
+          :missile_skill,
+          :armor_skill,
+          :dodge_skill,
+          :melee_skill,
+          :parry_skill,
+          :magical_defense,
+          :personality,
+          :outlook,
+          :alliance)
     end
 end
