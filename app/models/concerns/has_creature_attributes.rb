@@ -21,6 +21,25 @@ module Concerns
 
     included do
 
+      validates :speed, presence: true,
+          numericality: { greater_than_or_equal_to: 0, less_than: 16 }
+
+      validates :life_force, presence: true,
+          numericality: { greater_than_or_equal_to: 0, less_than: 64 }
+
+      validates :power, presence: true,
+          numericality: { greater_than_or_equal_to: 0, less_than: 128 }
+
+      validates :constitution, :wisdom, :strength, :size, :dexterity,
+          presence: true,
+          numericality: { greater_than_or_equal_to: 0, less_than: 32 }
+
+      validates :melee_skill, :armor_skill, :missile_skill, :parry_skill, :dodge_skill,
+          presence: true,
+          numericality: { greater_than_or_equal_to: 0, less_than: 128 }
+
+      validates :magical_defense, presence: true, inclusion: { in: MAGICAL_DEFENSES }
+
     end
 
     def smart?

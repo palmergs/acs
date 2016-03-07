@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301121936) do
+ActiveRecord::Schema.define(version: 20160307144634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160301121936) do
     t.string   "alliance",        limit: 15, default: "enemy",      null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.integer  "parry_skill",                default: 0,            null: false
     t.index ["creature_id"], name: "index_actors_on_creature_id", using: :btree
     t.index ["room_id"], name: "index_actors_on_room_id", using: :btree
     t.index ["x"], name: "index_actors_on_x", using: :btree
