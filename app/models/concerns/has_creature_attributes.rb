@@ -10,14 +10,24 @@ module Concerns
     SKILL_ARMOR = "Armor Skill"
     SKILL_DODGE = "Dodge Skill"
     SKILL_MELEE = "Melee Skill"
+    SKILL_PARRY = "Parry Skill"
     SKILL_MISSILE = "Missile Skill"
+    ALL_SKILLS = [ SKILL_ARMOR, SKILL_DODGE, SKILL_PARRY, SKILL_MELEE, SKILL_MISSILE ]
 
+    ATTRIB_SPEED = "Speed"
     ATTRIB_CONSTITUTION = "Constitution"
     ATTRIB_STRENGTH = "Strength"
     ATTRIB_DEXTERITY = "Dexterity"
-    ATTRIB_SPEED = "Speed"
     ATTRIB_WISDOM = "Wisdom"
     ATTRIB_SIZE = "Size"
+    ALL_ATTRIBUTES = [
+      ATTRIB_SPEED,
+      ATTRIB_CONSTITUTION,
+      ATTRIB_STRENGTH,
+      ATTRIB_DEXTERITY,
+      ATTRIB_WISDOM,
+      ATTRIB_SIZE
+    ]
 
     included do
 
