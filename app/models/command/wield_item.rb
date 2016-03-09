@@ -1,4 +1,4 @@
-class Command::WieldItem > Command
+class Command::WieldItem < Command
   def perform
     return false unless item
     return false unless item.actor == actor
