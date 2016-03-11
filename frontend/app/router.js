@@ -12,6 +12,12 @@ Router.map(function() {
 
     });
   });
+  this.route('adventures', function() {
+    
+  });
+  this.route('creatures', function() {
+
+  });
 });
 
 export default Router;
