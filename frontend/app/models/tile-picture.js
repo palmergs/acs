@@ -6,5 +6,6 @@ export default DS.Model.extend({
   name:       DS.attr('string'),
   description: DS.attr('string'),
   category:   DS.attr('string'),
-  setting:    DS.attr('string')
+  setting:    DS.attr('string'),
+  path:       DS.attr('string')
 });
