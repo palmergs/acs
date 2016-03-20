@@ -2,7 +2,9 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   adventure:  DS.belongsTo('adventure'),
+  tilePicture: DS.belongsTo('tile-picture'),
 
+  type:       DS.attr('string'),
   name:       DS.attr('string'),
   description: DS.attr('string'),
 
@@ -22,7 +24,7 @@ export default DS.Model.extend({
   meleeSkill: DS.attr('number'),
 
   magicalDefense: DS.attr('string'),
-  
+
   personality: DS.attr('string'),
   outlook:    DS.attr('string'),
   alliance:   DS.attr('string'),
