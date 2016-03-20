@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
       resources :adventures
       resources :tile_pictures
-      resources :maps
+      resources :maps, only: [ :show, :update ]
       resources :regions
       resources :rooms
       resources :terrains

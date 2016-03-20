@@ -9,4 +9,11 @@ RSpec.describe Adventure, :type => :model do
     expect(create(:adventure)).to be_persisted
     expect(create(:adventure)).to be_persisted
   end
+
+  describe 'map' do
+    it 'automatically has a world mpa built on create' do
+      expect(create(:adventure).map).to be_persisted
+      expect(create(:adventure).map.name).to eq('World Map')
+    end
+  end
 end
