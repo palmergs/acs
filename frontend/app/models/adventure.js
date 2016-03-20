@@ -7,7 +7,10 @@ export default DS.Model.extend({
   access:     DS.attr('string'),
   rating:     DS.attr('string'),
   createdAt:  DS.attr('date'),
-  updatedAt:  DS.attr('datea'),
+  updatedAt:  DS.attr('date'),
 
-  creatures:  DS.hasMany('creature')
+  map:        DS.belongsTo('map'),
+  creatures:  DS.hasMany('creature'),
+  things:     DS.hasMany('thing'),
+
 });
