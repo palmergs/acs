@@ -4,7 +4,7 @@ export default DS.Model.extend({
   region:     DS.belongsTo('region'),
 
   name:       DS.attr('string'),
-  descriptino: DS.attr('string'),
+  description: DS.attr('string'),
   width:      DS.attr('number', { default: 10 }),
   height:     DS.attr('number', { default: 10 }),
   x:          DS.attr('number', { default: 0 }),
