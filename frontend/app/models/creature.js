@@ -9,6 +9,7 @@ export default DS.Model.extend({
   description: DS.attr('string'),
 
   speed:      DS.attr('number'),
+  constitution: DS.attr('number'),
   strength:   DS.attr('number'),
   size:       DS.attr('number'),
   dexterity:  DS.attr('number'),
