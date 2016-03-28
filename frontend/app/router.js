@@ -9,11 +9,11 @@ Router.map(function() {
   this.route('welcome', { path: '/' });
   this.route('adventures', { path: 'adventures' }, function() {
     this.route('new', { path: 'new' });
-    this.route('adventure', { path: ':adventure_id' }, function() {
-      this.route('game');
-      this.route('edit');
-      this.route('map');
-      this.route('terrains');
+    this.route('adventure', { path: ':id' }, function() {
+      this.route('game', { path: 'play' });
+      this.route('edit', { path: 'edit' });
+      this.route('map', { path: 'map' });
+      this.route('terrains', { path: 'terrain' });
       this.route('tiles', { path: 'tiles' }, function() {
         this.route('edit', { path: ':tile_id' });
       });

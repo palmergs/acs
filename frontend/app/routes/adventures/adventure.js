@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord(params.adventure_id);
+    console.log(params);
+    return this.store.findRecord(params.id);
   }
 });

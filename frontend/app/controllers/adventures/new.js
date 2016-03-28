@@ -4,6 +4,8 @@ export default Ember.Controller.extend({
   actions: {
     save() {
       const model = this.get('model');
+      console.log("model");
+      console.log(model);
       model.save().then((adventure) => {
         console.log(adventure);
         this.transitionToRoute('adventures');
