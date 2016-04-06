@@ -9,7 +9,7 @@ gem 'jbuilder',       '~> 2.0'
 gem 'bcrypt',         '~> 3.1.7'
 
 gem 'ember-cli-rails'
-gem 'active_model_serializers', '~>0.10.0.rc3'
+gem 'jsonapi-resources', git: 'git@github.com:cerebris/jsonapi-resources.git', branch: 'rails5'
 gem 'rack-cors'
 
 gem 'kaminari'
