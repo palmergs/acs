@@ -9,6 +9,7 @@ RSpec.describe Api::V1::TilePicturesController, as: :controller do
       expect(response).to be_success
 
       hash = JSON.parse(response.body)
+      pp hash
       expect(hash['data'].count).to eq(1)
     end
   end

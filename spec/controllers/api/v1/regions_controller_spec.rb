@@ -40,7 +40,7 @@ RSpec.describe Api::V1::RegionsController, as: :controller do
       expect(response).to be_success
 
       hash = JSON.parse(response.body)
-      expect(hash['data']['attributes']['map_id']).to eq(mid)
+      expect(hash['data']['attributes']['map-id']).to eq(mid)
     end
   end
 

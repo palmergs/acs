@@ -42,7 +42,7 @@ RSpec.describe Api::V1::RoomsController, as: :controller do
       expect(response).to be_success
 
       hash = JSON.parse(response.body)
-      expect(hash['data']['attributes']['region_id']).to eq(rid)
+      expect(hash['data']['attributes']['region-id']).to eq(rid)
     end
   end
 

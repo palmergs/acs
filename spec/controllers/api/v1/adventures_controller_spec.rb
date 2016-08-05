@@ -28,10 +28,14 @@ RSpec.describe Api::V1::AdventuresController, as: :controller do
 
   describe '#create' do
     it 'can generate an adventure' do
-      post :create, params: { adventure: { name: 'A new adventure', description: 'Test' } }
+      post :create, params: { adventure: { 
+        type: 'Adventure', 
+        name: 'A new adventure', 
+        description: 'Test' } }
       expect(response).to be_success
 
       hash = JSON.parse(response.body)
+      pp hash
       expect(hash['data']['attributes']['rating']).to eq(Adventure::RATING_GENERAL)
       expect(hash['data']['attributes']['access']).to eq(Adventure::ACCESS_PRIVATE)
     end
