@@ -39,26 +39,24 @@ class Api::V1::AdventuresController < ApplicationController
 
   private
 
-    # def create_adventure_params
-    #   Rails.logger.debug("create")
-    #   Rails.logger.debug(params.inspect)
-    #   params.require(:adventure).permit(:name,
-    #       :description,
-    #       :intro,
-    #       :rating,
-    #       :access)
-    # end
-
     def create_adventure_params
-      params.require(:adventure).permit(:name, :description, :intro, :rating, :access)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params, 
+          only: [ 
+            :name, 
+            :description,
+            :intro,
+            :rating,
+            :access ])
     end
 
     def update_adventure_params
-      params.require(:adventure).permit(:name,
-          :description,
-          :intro,
-          :rating,
-          :access)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params, 
+          only: [ 
+            :name, 
+            :description,
+            :intro,
+            :rating,
+            :access ])
     end
 
 end
