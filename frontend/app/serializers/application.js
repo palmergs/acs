@@ -1,49 +1,43 @@
-// import DS from 'ember-data';
-//
-// export default DS.JSONAPISerializer.extend({
-//   serialize() {
-//     const result = this._super(...arguments),
-//         attr = result.data.attributes || {},
-//         rel = result.data.relationships || {};
-//
-//     console.log("in serializer...");
-//     console.log(result);
-//
-//     console.log("attributes...");
-//     console.log(attr);
-//
-//     console.log("relationshipts...");
-//     console.log(rel);
-//
-//     const returnMe = Object.keys(rel).reduce(function(acc, elem) {
-//       const data = rel[elem].data;
-//       if(data) {
-//         acc[`${ elem }_id`] = data.id;
-//       }
-//       if(data && data.type) {
-//         acc[`${ elem }_type`] = data.type[0].toUpperCase() + data.type.slice(1, -1);
-//       }
-//       return acc;
-//     }, attr);
-//
-//     console.log(returnMe);
-//     return returnMe;
-//   }
-// });
 
 // app/serializers/application.js
 import Ember from 'ember';
 import DS from 'ember-data';
 var underscore = Ember.String.underscore;
 
-export default DS.JSONAPISerializer.extend({ });
-//   keyForAttribute: function(attr) {
-//     console.log(`raw attribute = ${ attr }`);
-//     return underscore(attr);
-//   },
-//
-//   keyForRelationship: function(rawKey) {
-//     console.log(`raw key = ${ rawKey }`);
-//     return underscore(rawKey);
-//   }
-// });
+export default DS.JSONAPISerializer.extend({ 
+
+  // link: http://emberigniter.com/pagination-in-ember-with-json-api-backend/
+  normalizeQueryResponse(store, clazz, payload) {
+
+    const results = this._super(...arguments);
+    result.meta = result.meta || {};
+
+    if(payload.links) {
+      result.meta.pagination = this.createPageMeta(payload.links);
+    }
+
+    return result;
+  },
+
+  createPageMeta(data) {
+    let meta = {};
+
+    Object.keys(data).forEach(type => {
+      const link = data[type];
+      meta[type] = {};
+      let a = document.createElement('a');
+      a.href = link;
+
+      a.search.slice(1).split('&').forEach(pairs => {
+        const [param, value] = pairs.split('=');
+        if(param === 'page%5Bnumber%5D') { meta[type].number = parseInt(value); }
+        if(param === 'page%5Bsize%5D') { meta[type].size = parseInt(value); }
+      });
+
+      a = null;
+    });
+
+    return meta;
+  }
+
+});

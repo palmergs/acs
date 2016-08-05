@@ -1,7 +1,12 @@
 class Api::V1::AdventuresController < ApplicationController
 
+  DEFAULT_PAGE_SIZE = 9
+
   def index
-    @adventures = Adventure.page(params[:p]).per(25)
+    @adventures = Adventure.
+        order(created_at: :desc).
+        page(params.fetch(:page, {}).fetch(:number, nil)).
+        per(params.fetch(:page, {}).fetch(:size, DEFAULT_PAGE_SIZE))
     render json: @adventures
   end
 
