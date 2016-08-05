@@ -1,17 +1,15 @@
 source 'https://rubygems.org'
 
-
-gem 'rails',          '>= 5.0.0.beta2', '< 5.1'
-gem 'pg',             '~> 0.18'
-gem 'uglifier',       '>= 1.3.0'
+gem 'rails',          '>= 5.0.0'
+gem 'pg'
+gem 'uglifier'
 gem 'jquery-rails'
-gem 'jbuilder',       '~> 2.0'
-gem 'bcrypt',         '~> 3.1.7'
+gem 'jbuilder'
+gem 'bcrypt'
 
-gem 'ember-cli-rails'
-gem 'jsonapi-resources', git: 'git@github.com:cerebris/jsonapi-resources.git', branch: 'rails5'
+# gem 'ember-cli-rails' <- incompatible with rails 5.x
+gem 'active_model_serializers', '~> 0.10.1'
 gem 'rack-cors'
-
 gem 'kaminari'
 gem 'chunky_png'
 
@@ -19,13 +17,12 @@ group :development do
   gem 'puma'
   gem 'pry-rails'
   gem 'spring'
-  gem 'web-console',  '~> 3.0'
 end
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'rspec-rails',    '~> 3.5.0.beta2'
+  gem 'rspec-rails'
   gem 'faker'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
