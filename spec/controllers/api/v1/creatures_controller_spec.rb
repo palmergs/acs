@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Api::V1::CreaturesController, as: :controller do
 
   let(:adventure) { create(:adventure) }
-  let(:creature) { create(:creature, adventure: adventure) }
+  let(:tile_picture) { create(:tile_picture, adventure: adventure) }
+  let(:creature) { create(:creature, adventure: adventure, tile_picture: tile_picture) }
 
   describe '#index' do
     it 'returns creatures as JSON' do
@@ -27,15 +28,22 @@ RSpec.describe Api::V1::CreaturesController, as: :controller do
   end
 
   describe '#create' do
-    it 'can create a new creature' do
-      post :create, params: {
-        creature: {
-          type: 'Creature',
-          name: 'Giant Weasel',
-          adventure_id: adventure.id,
-          tile_picture_id: create(:tile_picture, adventure: adventure)
+
+    let(:create_params) {
+      {
+        data: {
+          attributes: {
+            name: 'Giant Weasel',
+            "adventure-id" => adventure.id,
+            "tile-picture-id" => tile_picture.id
+          },
+          type: 'creatures'
         }
       }
+    }
+
+    it 'can create a new creature' do
+      post :create, params: create_params
       expect(response).to be_success
 
       hash = JSON.parse(response.body)
@@ -44,13 +52,20 @@ RSpec.describe Api::V1::CreaturesController, as: :controller do
   end
 
   describe '#update' do
-    it 'can update an existing creature' do
-      put :update, params: {
-        id: creature.id,
-        creature: {
-          name: 'Giant Golden Weasel'
+    let(:update_params) {
+      {
+        data: {
+          attributes: {
+            name: 'Giant Golden Weasel'
+          },
+          type: 'creatures'
         }
       }
+    }
+
+    it 'can update an existing creature' do
+      update_params[:id] = creature.id
+      put :update, params: update_params
       expect(response).to be_success
 
       hash = JSON.parse(response.body)
