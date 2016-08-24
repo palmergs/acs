@@ -34,6 +34,7 @@ Router.map(function() {
       });
     });
   });
+  this.route('grid-test');
 });
 
 export default Router;
