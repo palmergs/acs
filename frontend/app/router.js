@@ -36,6 +36,7 @@ Router.map(function() {
   });
   this.route('grid-test');
   this.route('breakout');
+  this.route('scrolling');
 });
 
 export default Router;
