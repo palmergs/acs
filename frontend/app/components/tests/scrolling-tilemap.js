@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'canvas',
   attributeBindings: [ 'width', 'height', 'tabindex' ],
-  width: 2000,
+  width: 1154,
   height: 1154,
   tabindex: 1,
   cols: 26,
@@ -48,15 +48,16 @@ export default Ember.Component.extend({
     ctx.fillText(`Frame: ${ ts }`, 8, 20);
   },
   drawMap(ctx, tileAtlas) {
-    console.log("In draw...");
-    const w = this.get('width'),
+    const w = this.$().parent().width(),
         h = this.get('height'),
         mapCols = +this.get('cols'),
         mapRows = +this.get('rows'),
         tcols = +this.get('tcols'),
         tsize = +this.get('tsize'),
         tiles = +this.get('tiles');
-    ctx.translate(-2 * tsize, -2 * tsize)
+    console.log(`width=${ w }`);
+    this.set('width', w);
+    ctx.translate(-3 * tsize, -3 * tsize)
     for(let r = 0; r < mapRows; ++r) {
       for(let c = 0; c < mapCols; ++c) {
         let tile = this.tileAt(c, r);
@@ -86,6 +87,7 @@ export default Ember.Component.extend({
     atlas.onload = () => {
       const loop = (ts) => {
         const w = this.get('width'),  h = this.get('height');
+        console.log(`canvas width=${ w }`);
         ctx.save();
         ctx.translate(w / 2, h / 2);
         ctx.rotate((Math.PI/180) * (cnt % 360) );
