@@ -10,10 +10,13 @@ class Api::V1::CreaturesController < ApplicationController
   end
 
   def create
+    pp create_creature_params
     @creature = Creature.new(create_creature_params)
+    @creature.type = 'Creature'
     if @creature.save
       render json: @creature
     else
+      pp @creature.errors
       render json: { errors: @creature.errors.full_messages }, status: :unprocessable_entity
     end
   end
@@ -38,8 +41,8 @@ class Api::V1::CreaturesController < ApplicationController
     def create_creature_params
       ActiveModelSerializers::Deserialization.jsonapi_parse(params, 
           only: [ # :type,
-            :adventure_id,
-            :tile_picture_id,
+            :'adventure-id',
+            :'tile-picture-id',
             :name, 
             :description,
             :speed,
