@@ -104,6 +104,11 @@ export default Ember.Component.extend({
   },
 
   keyDown: function(evt) {
+    const code = evt.keyCode;
+    switch(code) {
+      default:
+      console.log(code);
+    }
     if(evt.keyCode == 39) { this.set('rightPressed', true); }
     else if(evt.keyCode == 37) { this.set('leftPressed', true); }
   },
@@ -143,7 +148,7 @@ export default Ember.Component.extend({
 
       this.drawScore(ctx, score, dx, dy, ts - lastTimestamp);
       lastTimestamp = ts;
-      
+
       if(x + dx > w - r || x + dx < r) { dx = -dx; }
       if(y + dy < r) {
         dy = -dy;
