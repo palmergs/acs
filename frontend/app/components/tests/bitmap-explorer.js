@@ -9,36 +9,123 @@ export default Ember.Component.extend({
   tileSize: 16,
   cx: 200,        // current perspective - x
   cy: 100,        // current perspective - y
-  ca: 0,          // current perspective - angle
+  ca: 0,          // current perspective - angle,
+  cs: 1,        // current radius in tiles; 0 is smallest
 
   keyDown: function(evt) {
+    const angleDistance = 0.66;
     const code = evt.keyCode;
+    let cx = this.get('cx'),
+        cy = this.get('cy');
     switch(code) {
+      case 54:
       case 39: // right
         this.set('ca', 270);
-        this.set('cx', this.get('cx') + 1);
+        cx += 1
         break;
+      case 52:
       case 37: // left
         this.set('ca', 90);
-        this.set('cx', this.get('cx') - 1);
+        cx -= 1;
         break;
+      case 56:
       case 38: // up
         this.set('ca', 180);
-        this.set('cy', this.get('cy') - 1);
+        cy -= 1
         break;
+      case 50:
       case 40: // down
         this.set('ca', 0);
-        this.set('cy', this.get('cy') + 1);
+        cy += 1
         break;
+      case 55: // up left
+        this.set('ca', 135);
+        cy -= angleDistance;
+        cx -= angleDistance;
+        break;
+      case 49: // down left
+        this.set('ca', 45);
+        cy += angleDistance;
+        cx += angleDistance;
+        break;
+      case 57: // up right
+        this.set('ca', 225);
+        cy -= angleDistance;
+        cx += angleDistance;
+        break;
+      case 51: // down right
+        this.set('ca', 305);
+        cy += angleDistance;
+        cx += angleDistance;
       default:
         console.log(code);
     }
+    this.canMoveTo([], cx, cy);
+    this.setProperties({ cx: cx, cy: cy });
   },
 
   drawTimestamp(ctx, ts) {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
-    ctx.fillText(`Frame: ${ Math.round(ts) } X: ${ this.get('cx') } Y: ${ this.get('cy') }`, 8, 20);
+    ctx.fillText(`Frame: ${ Math.round(ts) } X: ${ Math.round(this.get('cx')) } Y: ${ Math.round(this.get('cy')) }`, 8, 20);
+  },
+
+  valueAt(bitmap, bitmapRows, bitmapCols, row, col) {
+    if(row >= 0 && row < bitmapRows && col >= 0 && col <= bitmapCols) {
+      return bitmap[row * bitmapCols + col] > 0 ? 1 : 0
+    } else {
+      return 1;
+    }
+  },
+
+  wallMatrix(bitmap, bitmapRows, bitmapCols, row, col) {
+    // covert 0 to empty space, non-zero to wall
+    return [
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row - 1, col - 1),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row - 1, col),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row - 1, col + 1),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row,     col - 1),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row,     col),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row,     col + 1),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row + 1, col - 1),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row + 1, col),
+      this.valueAt(bitmap, bitmapRows, bitmapCols, row + 1, col + 1)
+    ];
+  },
+
+  canMoveTo(matrix, newRow, newCol) {
+    const diffX = Math.round(this.get('cx')) - Math.round(newCol),
+        diffY = Math.round(this.get('cy')) - Math.round(newRow);
+
+    console.log(diffX, diffY);
+  },
+
+  wallTileCoords(matrix) {
+    if(matrix[1] === 0 && matrix[3] === 0 && matrix[5] === 0 && matrix[7] === 0) return 0;
+    if(matrix[1] === 0 && matrix[3] === 0 && matrix[5] === 0) return 7;
+    if(matrix[7] === 0 && matrix[3] === 0 && matrix[5] === 0) return 10;
+    if(matrix[1] === 0 && matrix[7] === 0 && matrix[5] === 0) return 9;
+    if(matrix[1] === 0 && matrix[7] === 0 && matrix[3] === 0) return 8;
+    if(matrix[5] === 0 && matrix[7] === 0) return 11;
+    if(matrix[3] === 0 && matrix[7] === 0) return 12;
+    if(matrix[1] === 0 && matrix[3] === 0) return 13;
+    if(matrix[1] === 0 && matrix[5] === 0) return 14;
+
+    // if(matrix[1] === 0 && matrix[7] === 0) return
+    return 15;
+  },
+
+  backgroundTileCoords(matrix) {
+    if(matrix[1] > 0 && matrix[3] > 0 && matrix[5] > 0 && matrix[7] > 0) return 15;
+    if(matrix[1] > 0 && matrix[3] > 0 && matrix[5] > 0) return 10;
+    if(matrix[1] > 0 && matrix[3] > 0 && matrix[7] > 0) return 9;
+    if(matrix[1] > 0 && matrix[5] > 0 && matrix[7] > 0) return 8;
+    if(matrix[3] > 0 && matrix[5] > 0 && matrix[7] > 0) return 7;
+    if(matrix[1] > 0 && matrix[3] > 0) return 2;
+    if(matrix[1] > 0 && matrix[5] > 0) return 4;
+    if(matrix[3] > 0 && matrix[7] > 0) return 3;
+    if(matrix[5] > 0 && matrix[7] > 0) return 1;
+    return 0;
   },
 
   drawMap(ctx, floormap) {
@@ -47,9 +134,8 @@ export default Ember.Component.extend({
         tileSize = this.get('tileSize'),
         viewRows = Math.floor(viewHeight / tileSize) + 1,
         viewCols = Math.floor(viewWidth / tileSize) + 1,
-        viewX = this.get('cx'),
-        viewY = this.get('cy'),
-        viewAngle = this.get('ca'),
+        viewX = Math.round(this.get('cx')),
+        viewY = Math.round(this.get('cy')),
         offsetX = viewX - Math.floor(viewCols / 2),
         offsetY = viewY - Math.floor(viewRows / 2),
         bitmap = this.get('bitmap'),
@@ -60,11 +146,16 @@ export default Ember.Component.extend({
     this.set('width', viewWidth);
 
     for(let r = 0; r < viewRows; ++r) {
-      let displayR = r + offsetY;
+      let mapR = r + offsetY;
       for(let c = 0; c < viewCols; ++c) {
-        let displayC = c + offsetX;
-        let value = bitmap[displayR * bitmapCols + displayC];
-        ctx.drawImage(floormap, value * 16, 0, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
+        let mapC = c + offsetX;
+        let matrix = this.wallMatrix(bitmap, bitmapRows, bitmapCols, mapR, mapC);
+        ctx.drawImage(floormap, 112, 32, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
+        if(matrix[4] > 0) {
+          ctx.drawImage(floormap, this.wallTileCoords(matrix) * 16, 16, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
+        } else {
+          ctx.drawImage(floormap, this.backgroundTileCoords(matrix) * 16, 0, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
+        }
       }
     }
   },
@@ -78,14 +169,16 @@ export default Ember.Component.extend({
     ctx.rotate((Math.PI/180) * (this.get('ca') % 360) );
     ctx.translate(-viewWidth / 2, -viewHeight / 2);
     ctx.strokeStyle = 'rgba(180, 40, 40, 0.2)';
-    ctx.translate(0.5, 0.5);
+    // ctx.translate(0.5, 0.5);
+    ctx.beginPath();
     ctx.arc(Math.floor(viewWidth / 2),
         Math.floor(viewHeight / 2),
         tileSize * 1.5,
         0,
         Math.PI * 2);
+    ctx.closePath();
     ctx.stroke();
-    ctx.translate(-0.5, -0.5);
+    // ctx.translate(-0.5, -0.5);
     ctx.drawImage(char, 0, 0, 174, 153,
         Math.floor(viewWidth / 2 - tileSize * 1.5),
         Math.floor(viewHeight / 2 - tileSize * 1.5),
@@ -110,7 +203,7 @@ export default Ember.Component.extend({
     char.src = '/assets/tokens/character.png';
 
     const floormap = new Image();
-    floormap.src = '/assets/tilemaps/floors.png';
+    floormap.src = '/assets/tilemaps/background-tiles.png';
 
     Ember.$.ajax({
       url: 'http://localhost:3000/floorplans/castle-only.json'
