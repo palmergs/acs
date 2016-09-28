@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   tagName: 'canvas',
   attributeBindings: [ 'width', 'height', 'tabindex', 'canvasStyle:style' ],
   width: 800,
-  height: 500,
+  height: 700,
   tabindex: 1,
   tileSize: 16,
   cx: 200,        // current perspective - x
@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   cs: 1,        // current radius in tiles; 0 is smallest
 
   keyDown: function(evt) {
-    const angleDistance = 0.66;
+    const angleDistance = 0.75;
     const code = evt.keyCode;
     let cx = this.get('cx'),
         cy = this.get('cy');
@@ -46,7 +46,7 @@ export default Ember.Component.extend({
       case 49: // down left
         this.set('ca', 45);
         cy += angleDistance;
-        cx += angleDistance;
+        cx -= angleDistance;
         break;
       case 57: // up right
         this.set('ca', 225);
@@ -150,7 +150,8 @@ export default Ember.Component.extend({
       for(let c = 0; c < viewCols; ++c) {
         let mapC = c + offsetX;
         let matrix = this.wallMatrix(bitmap, bitmapRows, bitmapCols, mapR, mapC);
-        ctx.drawImage(floormap, 112, 32, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
+        let grass = 8;
+        ctx.drawImage(floormap, grass * 16, 32, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
         if(matrix[4] > 0) {
           ctx.drawImage(floormap, this.wallTileCoords(matrix) * 16, 16, 16, 16, c * tileSize, r * tileSize, tileSize, tileSize);
         } else {
@@ -159,6 +160,8 @@ export default Ember.Component.extend({
       }
     }
   },
+
+
 
   drawCharacter(ctx, char) {
     ctx.save();
@@ -169,7 +172,7 @@ export default Ember.Component.extend({
     ctx.rotate((Math.PI/180) * (this.get('ca') % 360) );
     ctx.translate(-viewWidth / 2, -viewHeight / 2);
     ctx.strokeStyle = 'rgba(180, 40, 40, 0.2)';
-    // ctx.translate(0.5, 0.5);
+    ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.arc(Math.floor(viewWidth / 2),
         Math.floor(viewHeight / 2),
@@ -178,7 +181,6 @@ export default Ember.Component.extend({
         Math.PI * 2);
     ctx.closePath();
     ctx.stroke();
-    // ctx.translate(-0.5, -0.5);
     ctx.drawImage(char, 0, 0, 174, 153,
         Math.floor(viewWidth / 2 - tileSize * 1.5),
         Math.floor(viewHeight / 2 - tileSize * 1.5),
