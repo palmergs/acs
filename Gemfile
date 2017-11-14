@@ -17,6 +17,7 @@ group :development do
   gem 'puma'
   gem 'pry-rails'
   gem 'spring'
+  gem 'listen'
 end
 
 group :development, :test do
