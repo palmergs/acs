@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :adventure do
     sequence(:name) {|n| "Adventure ##{ n }" }
     description "A fantasy romp with unicorns and elves and dwarves and gems and ..."
@@ -6,5 +6,4 @@ FactoryGirl.define do
     rating "general"
     access "private"
   end
-
 end

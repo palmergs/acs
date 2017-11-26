@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :store_thing do
     store  { create(:thing) }
     thing

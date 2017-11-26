@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :map do
     adventure
     sequence(:name) {|n| "Map ##{ n }" }

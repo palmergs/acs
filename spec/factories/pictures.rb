@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :picture do
     sequence(:name) {|n| "My Picture #{ n }" }
     description "License or description of this picture"

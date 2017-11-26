@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :terrain do
     map
     tile_picture

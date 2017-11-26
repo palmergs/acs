@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :creature do
     type "Creature"
     adventure
