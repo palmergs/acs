@@ -7,6 +7,12 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('scrolling');
+  this.route('grid-test');
+  this.route('explorer');
+  this.route('breakout');
+  this.route('pictures');
+
   this.route('home', { path: '/home' });
   this.route('play', { path: '/adventure/:adventure_id' });
   this.route('adventures', { path: '/adventures' }, function() {

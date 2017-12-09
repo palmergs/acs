@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import d3 from 'd3';
+import { select, event } from 'd3-selection';
 
 export default Ember.Component.extend({
 
@@ -42,7 +42,7 @@ export default Ember.Component.extend({
 
     const elem = this.$();
 
-    const grid = d3.select(elem.get(0)).
+    const grid = select(elem.get(0)).
         append('svg').
         attr('width', `${ this.get('width') }px`).
         attr('height', `${ this.get('height') }px`);
@@ -66,14 +66,14 @@ export default Ember.Component.extend({
             style('fill', '#fff').
             style('stroke', '#888').
             on('mouseover', function(d, idx, evt) {
-              console.log(d, d3.event);
-              if(d3.event.buttons === 1) {
-                if(d3.event.shiftKey) {
+              console.log(d, event);
+              if(event.buttons === 1) {
+                if(event.shiftKey) {
                   d.clicks = 0;
-                  d3.select(this).style('fill', clickColors[d.clicks % clickColors.length]);
+                  select(this).style('fill', clickColors[d.clicks % clickColors.length]);
                 } else {
                   if(d.clicks < clickColors.length - 1) { ++d.clicks; }
-                  d3.select(this).style('fill', clickColors[d.clicks % clickColors.length]);
+                  select(this).style('fill', clickColors[d.clicks % clickColors.length]);
                 }
               }
             });
