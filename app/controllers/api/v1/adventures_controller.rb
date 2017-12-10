@@ -45,6 +45,8 @@ class Api::V1::AdventuresController < ApplicationController
   private
 
     def create_adventure_params
+      params.permit!
+pp "in create_adventure_params... params=#{ params.inspect }"
       ActiveModelSerializers::Deserialization.jsonapi_parse(params, 
           only: [ 
             :name, 

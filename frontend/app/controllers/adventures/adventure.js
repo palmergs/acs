@@ -1,11 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-  model(params) {
-    console.log("adventures/adventure", params, params.adventure_id);
-    return this.store.findRecord('adventure', params.adventure_id);
-  },
-
+export default Ember.Controller.extend({
   actions: {
     save() {
       const model = this.get('model');

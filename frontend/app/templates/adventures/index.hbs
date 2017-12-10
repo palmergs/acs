@@ -2,7 +2,7 @@
 {{#each model as |adventure|}}
   <div class="row">
     <div class="col-sm-12">
-      <p>{{adventure.name}}: {{adventure.description}}</p>
+      <p>{{#link-to "adventures.adventure" adventure.id}}{{adventure.name}}{{/link-to}}: {{adventure.description}}</p>
     </div>
   </div>
 {{/each}}
