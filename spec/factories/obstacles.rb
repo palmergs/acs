@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :obstacle do
     adventure
     tile_picture

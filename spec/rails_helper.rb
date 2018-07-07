@@ -30,7 +30,7 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
 # TODO: uncomment this once devise is added to app
 #  config.include Devise::TestHelpers, type: :controller

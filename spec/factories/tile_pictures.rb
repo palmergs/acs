@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :tile_picture do
     adventure
     sequence(:name) {|n| "Tile Picture ##{ n }" }
@@ -6,5 +6,4 @@ FactoryGirl.define do
     category TilePicture::CATEGORY_ITEM
     setting TilePicture::SETTING_FANTASY
   end
-
 end

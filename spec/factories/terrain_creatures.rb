@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :terrain_creature do
     terrain
     creature

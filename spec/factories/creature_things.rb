@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :creature_thing do
     creature
     thing
