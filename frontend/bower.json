@@ -1,8 +1,0 @@
-{
-  "name": "frontend",
-  "dependencies": {
-    "font-awesome": "~4.5.0",
-    "bootstrap": "~3.3.5",
-    "d3": "^4.2.2"
-  }
-}

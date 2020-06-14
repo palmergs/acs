@@ -1,9 +1,0 @@
-<h3>index.hbs</h3>
-{{#each model as |adventure|}}
-  <div class="row">
-    <div class="col-sm-12">
-      <p>{{#link-to "adventures.adventure" adventure.id}}{{adventure.name}}{{/link-to}}: {{adventure.description}}</p>
-    </div>
-  </div>
-{{/each}}
-{{outlet}}

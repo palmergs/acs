@@ -1,3 +1,0 @@
-class Armor < MagicItem
-
-end
