@@ -101,6 +101,10 @@ Layout/FirstArrayElementIndentation:
 #TODO: waiting for beginning_only to be implemented
 #Layout/EmptyLinesAroundBlockBody:
 #  EnforcedStyle: beginning_only
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 Lint/RaiseException:
   Enabled: true
 Lint/StructNewOverride:
