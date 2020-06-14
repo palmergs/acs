@@ -10,243 +10,241 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307144634) do
-
+ActiveRecord::Schema.define(version: 20_160_307_144_634) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "actors", id: :serial, force: :cascade do |t|
-    t.integer "room_id", null: false
-    t.integer "creature_id", null: false
-    t.integer "x", null: false
-    t.integer "y", null: false
-    t.integer "speed", default: 0, null: false
-    t.integer "life_force", default: 0, null: false
-    t.integer "life_force_temp", default: 0, null: false
-    t.integer "constitution", default: 0, null: false
-    t.integer "power", default: 0, null: false
-    t.integer "power_temp", default: 0, null: false
-    t.integer "wisdom", default: 0, null: false
-    t.integer "strength", default: 0, null: false
-    t.integer "encumbrance", default: 0, null: false
-    t.integer "size", default: 0, null: false
-    t.integer "dexterity", default: 0, null: false
-    t.integer "missile_skill", default: 0, null: false
-    t.integer "armor_skill", default: 0, null: false
-    t.integer "dodge_skill", default: 0, null: false
-    t.integer "melee_skill", default: 0, null: false
-    t.string "magical_defense", limit: 15, default: "none", null: false
-    t.string "personality", limit: 15, default: "brave", null: false
-    t.string "outlook", limit: 15, default: "aggressive", null: false
-    t.string "alliance", limit: 15, default: "enemy", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "parry_skill", default: 0, null: false
-    t.index ["creature_id"], name: "index_actors_on_creature_id"
-    t.index ["room_id"], name: "index_actors_on_room_id"
-    t.index ["x"], name: "index_actors_on_x"
-    t.index ["y"], name: "index_actors_on_y"
+  create_table 'actors', id: :serial, force: :cascade do |t|
+    t.integer 'room_id', null: false
+    t.integer 'creature_id', null: false
+    t.integer 'x', null: false
+    t.integer 'y', null: false
+    t.integer 'speed', default: 0, null: false
+    t.integer 'life_force', default: 0, null: false
+    t.integer 'life_force_temp', default: 0, null: false
+    t.integer 'constitution', default: 0, null: false
+    t.integer 'power', default: 0, null: false
+    t.integer 'power_temp', default: 0, null: false
+    t.integer 'wisdom', default: 0, null: false
+    t.integer 'strength', default: 0, null: false
+    t.integer 'encumbrance', default: 0, null: false
+    t.integer 'size', default: 0, null: false
+    t.integer 'dexterity', default: 0, null: false
+    t.integer 'missile_skill', default: 0, null: false
+    t.integer 'armor_skill', default: 0, null: false
+    t.integer 'dodge_skill', default: 0, null: false
+    t.integer 'melee_skill', default: 0, null: false
+    t.string 'magical_defense', limit: 15, default: 'none', null: false
+    t.string 'personality', limit: 15, default: 'brave', null: false
+    t.string 'outlook', limit: 15, default: 'aggressive', null: false
+    t.string 'alliance', limit: 15, default: 'enemy', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'parry_skill', default: 0, null: false
+    t.index ['creature_id'], name: 'index_actors_on_creature_id'
+    t.index ['room_id'], name: 'index_actors_on_room_id'
+    t.index ['x'], name: 'index_actors_on_x'
+    t.index ['y'], name: 'index_actors_on_y'
   end
 
-  create_table "adventures", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.text "intro"
-    t.string "rating", limit: 31, default: "general", null: false
-    t.string "access", limit: 31, default: "private", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'adventures', id: :serial, force: :cascade do |t|
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.text 'intro'
+    t.string 'rating', limit: 31, default: 'general', null: false
+    t.string 'access', limit: 31, default: 'private', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "creature_things", id: :serial, force: :cascade do |t|
-    t.integer "creature_id", null: false
-    t.integer "thing_id", null: false
-    t.integer "count", default: 1, null: false
-    t.boolean "equipped", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["creature_id"], name: "index_creature_things_on_creature_id"
-    t.index ["thing_id"], name: "index_creature_things_on_thing_id"
+  create_table 'creature_things', id: :serial, force: :cascade do |t|
+    t.integer 'creature_id', null: false
+    t.integer 'thing_id', null: false
+    t.integer 'count', default: 1, null: false
+    t.boolean 'equipped', default: false, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['creature_id'], name: 'index_creature_things_on_creature_id'
+    t.index ['thing_id'], name: 'index_creature_things_on_thing_id'
   end
 
-  create_table "creatures", id: :serial, force: :cascade do |t|
-    t.string "type", limit: 31, null: false
-    t.integer "adventure_id", null: false
-    t.integer "tile_picture_id", null: false
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.integer "speed", default: 6, null: false
-    t.integer "life_force", default: 10, null: false
-    t.integer "constitution", default: 10, null: false
-    t.integer "power", default: 10, null: false
-    t.integer "wisdom", default: 10, null: false
-    t.integer "strength", default: 10, null: false
-    t.integer "size", default: 10, null: false
-    t.integer "dexterity", default: 10, null: false
-    t.integer "missile_skill", default: 10, null: false
-    t.integer "armor_skill", default: 0, null: false
-    t.integer "dodge_skill", default: 25, null: false
-    t.integer "melee_skill", default: 25, null: false
-    t.integer "parry_skill", default: 25, null: false
-    t.string "magical_defense", limit: 15, default: "none", null: false
-    t.string "personality", limit: 15, default: "brave", null: false
-    t.string "outlook", limit: 15, default: "aggressive", null: false
-    t.string "alliance", limit: 15, default: "enemy", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adventure_id"], name: "index_creatures_on_adventure_id"
-    t.index ["tile_picture_id"], name: "index_creatures_on_tile_picture_id"
-    t.index ["type"], name: "index_creatures_on_type"
+  create_table 'creatures', id: :serial, force: :cascade do |t|
+    t.string 'type', limit: 31, null: false
+    t.integer 'adventure_id', null: false
+    t.integer 'tile_picture_id', null: false
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.integer 'speed', default: 6, null: false
+    t.integer 'life_force', default: 10, null: false
+    t.integer 'constitution', default: 10, null: false
+    t.integer 'power', default: 10, null: false
+    t.integer 'wisdom', default: 10, null: false
+    t.integer 'strength', default: 10, null: false
+    t.integer 'size', default: 10, null: false
+    t.integer 'dexterity', default: 10, null: false
+    t.integer 'missile_skill', default: 10, null: false
+    t.integer 'armor_skill', default: 0, null: false
+    t.integer 'dodge_skill', default: 25, null: false
+    t.integer 'melee_skill', default: 25, null: false
+    t.integer 'parry_skill', default: 25, null: false
+    t.string 'magical_defense', limit: 15, default: 'none', null: false
+    t.string 'personality', limit: 15, default: 'brave', null: false
+    t.string 'outlook', limit: 15, default: 'aggressive', null: false
+    t.string 'alliance', limit: 15, default: 'enemy', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['adventure_id'], name: 'index_creatures_on_adventure_id'
+    t.index ['tile_picture_id'], name: 'index_creatures_on_tile_picture_id'
+    t.index ['type'], name: 'index_creatures_on_type'
   end
 
-  create_table "items", id: :serial, force: :cascade do |t|
-    t.integer "thing_id", null: false
-    t.integer "room_id"
-    t.integer "actor_id"
-    t.integer "x", null: false
-    t.integer "y", null: false
-    t.integer "z", null: false
-    t.text "activate_message"
-    t.integer "acts_on_thing_id"
-    t.integer "acts_on_creature_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "readied", default: false, null: false
-    t.index ["actor_id"], name: "index_items_on_actor_id"
-    t.index ["room_id"], name: "index_items_on_room_id"
-    t.index ["thing_id"], name: "index_items_on_thing_id"
-    t.index ["x"], name: "index_items_on_x"
-    t.index ["y"], name: "index_items_on_y"
-    t.index ["z"], name: "index_items_on_z"
+  create_table 'items', id: :serial, force: :cascade do |t|
+    t.integer 'thing_id', null: false
+    t.integer 'room_id'
+    t.integer 'actor_id'
+    t.integer 'x', null: false
+    t.integer 'y', null: false
+    t.integer 'z', null: false
+    t.text 'activate_message'
+    t.integer 'acts_on_thing_id'
+    t.integer 'acts_on_creature_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.boolean 'readied', default: false, null: false
+    t.index ['actor_id'], name: 'index_items_on_actor_id'
+    t.index ['room_id'], name: 'index_items_on_room_id'
+    t.index ['thing_id'], name: 'index_items_on_thing_id'
+    t.index ['x'], name: 'index_items_on_x'
+    t.index ['y'], name: 'index_items_on_y'
+    t.index ['z'], name: 'index_items_on_z'
   end
 
-  create_table "maps", id: :serial, force: :cascade do |t|
-    t.integer "adventure_id", null: false
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.integer "width", default: 40, null: false
-    t.integer "height", default: 40, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adventure_id"], name: "index_maps_on_adventure_id"
+  create_table 'maps', id: :serial, force: :cascade do |t|
+    t.integer 'adventure_id', null: false
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.integer 'width', default: 40, null: false
+    t.integer 'height', default: 40, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['adventure_id'], name: 'index_maps_on_adventure_id'
   end
 
-  create_table "pictures", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 48, null: false
-    t.string "slug", limit: 48, null: false
-    t.text "description", default: "", null: false
-    t.string "path", null: false
-    t.string "category", limit: 48, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_pictures_on_slug"
+  create_table 'pictures', id: :serial, force: :cascade do |t|
+    t.string 'name', limit: 48, null: false
+    t.string 'slug', limit: 48, null: false
+    t.text 'description', default: '', null: false
+    t.string 'path', null: false
+    t.string 'category', limit: 48, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['slug'], name: 'index_pictures_on_slug'
   end
 
-  create_table "regions", id: :serial, force: :cascade do |t|
-    t.integer "map_id", null: false
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.integer "width", default: 40, null: false
-    t.integer "height", default: 40, null: false
-    t.integer "x"
-    t.integer "y"
-    t.integer "tile_picture_id"
-    t.text "enter"
-    t.text "leave"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["map_id"], name: "index_regions_on_map_id"
+  create_table 'regions', id: :serial, force: :cascade do |t|
+    t.integer 'map_id', null: false
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.integer 'width', default: 40, null: false
+    t.integer 'height', default: 40, null: false
+    t.integer 'x'
+    t.integer 'y'
+    t.integer 'tile_picture_id'
+    t.text 'enter'
+    t.text 'leave'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['map_id'], name: 'index_regions_on_map_id'
   end
 
-  create_table "rooms", id: :serial, force: :cascade do |t|
-    t.integer "region_id", null: false
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.integer "width", default: 10, null: false
-    t.integer "height", default: 10, null: false
-    t.integer "x", null: false
-    t.integer "y", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["region_id"], name: "index_rooms_on_region_id"
+  create_table 'rooms', id: :serial, force: :cascade do |t|
+    t.integer 'region_id', null: false
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.integer 'width', default: 10, null: false
+    t.integer 'height', default: 10, null: false
+    t.integer 'x', null: false
+    t.integer 'y', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['region_id'], name: 'index_rooms_on_region_id'
   end
 
-  create_table "store_things", id: :serial, force: :cascade do |t|
-    t.integer "store_id", null: false
-    t.integer "thing_id", null: false
-    t.integer "count", default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["store_id"], name: "index_store_things_on_store_id"
-    t.index ["thing_id"], name: "index_store_things_on_thing_id"
+  create_table 'store_things', id: :serial, force: :cascade do |t|
+    t.integer 'store_id', null: false
+    t.integer 'thing_id', null: false
+    t.integer 'count', default: 1, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['store_id'], name: 'index_store_things_on_store_id'
+    t.index ['thing_id'], name: 'index_store_things_on_thing_id'
   end
 
-  create_table "terrain_creatures", id: :serial, force: :cascade do |t|
-    t.integer "terrain_id", null: false
-    t.integer "creature_id", null: false
-    t.text "message", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["creature_id"], name: "index_terrain_creatures_on_creature_id"
-    t.index ["terrain_id"], name: "index_terrain_creatures_on_terrain_id"
+  create_table 'terrain_creatures', id: :serial, force: :cascade do |t|
+    t.integer 'terrain_id', null: false
+    t.integer 'creature_id', null: false
+    t.text 'message', default: '', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['creature_id'], name: 'index_terrain_creatures_on_creature_id'
+    t.index ['terrain_id'], name: 'index_terrain_creatures_on_terrain_id'
   end
 
-  create_table "terrains", id: :serial, force: :cascade do |t|
-    t.integer "map_id", null: false
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.integer "tile_picture_id", null: false
-    t.integer "encounter_chance", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["map_id"], name: "index_terrains_on_map_id"
+  create_table 'terrains', id: :serial, force: :cascade do |t|
+    t.integer 'map_id', null: false
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.integer 'tile_picture_id', null: false
+    t.integer 'encounter_chance', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['map_id'], name: 'index_terrains_on_map_id'
   end
 
-  create_table "things", id: :serial, force: :cascade do |t|
-    t.string "type", limit: 31, null: false
-    t.integer "adventure_id", null: false
-    t.integer "tile_picture_id", null: false
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.integer "weight", default: 0, null: false
-    t.integer "value", default: 0, null: false
-    t.boolean "disappear", default: true, null: false
-    t.integer "power", default: 0, null: false
-    t.integer "attack_adj", default: 0, null: false
-    t.integer "breakability", default: 0, null: false
-    t.boolean "magic", default: false, null: false
-    t.boolean "owner_only", default: false, null: false
-    t.integer "range", default: 0, null: false
-    t.text "pickup"
-    t.text "drop"
-    t.integer "max_carry", default: 25000, null: false
-    t.integer "max_stack", default: 1, null: false
-    t.boolean "buyable", default: false, null: false
-    t.string "activate_on", limit: 31, default: "none", null: false
-    t.integer "power_cost", default: 0, null: false
-    t.string "spell_type"
-    t.string "activate_summary"
-    t.text "activate_message"
-    t.integer "acts_on_thing_id"
-    t.integer "acts_on_creature_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adventure_id"], name: "index_things_on_adventure_id"
-    t.index ["tile_picture_id"], name: "index_things_on_tile_picture_id"
+  create_table 'things', id: :serial, force: :cascade do |t|
+    t.string 'type', limit: 31, null: false
+    t.integer 'adventure_id', null: false
+    t.integer 'tile_picture_id', null: false
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.integer 'weight', default: 0, null: false
+    t.integer 'value', default: 0, null: false
+    t.boolean 'disappear', default: true, null: false
+    t.integer 'power', default: 0, null: false
+    t.integer 'attack_adj', default: 0, null: false
+    t.integer 'breakability', default: 0, null: false
+    t.boolean 'magic', default: false, null: false
+    t.boolean 'owner_only', default: false, null: false
+    t.integer 'range', default: 0, null: false
+    t.text 'pickup'
+    t.text 'drop'
+    t.integer 'max_carry', default: 25_000, null: false
+    t.integer 'max_stack', default: 1, null: false
+    t.boolean 'buyable', default: false, null: false
+    t.string 'activate_on', limit: 31, default: 'none', null: false
+    t.integer 'power_cost', default: 0, null: false
+    t.string 'spell_type'
+    t.string 'activate_summary'
+    t.text 'activate_message'
+    t.integer 'acts_on_thing_id'
+    t.integer 'acts_on_creature_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['adventure_id'], name: 'index_things_on_adventure_id'
+    t.index ['tile_picture_id'], name: 'index_things_on_tile_picture_id'
   end
 
-  create_table "tile_pictures", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "adventure_id"
-    t.string "name", limit: 63, null: false
-    t.text "description", default: "", null: false
-    t.string "path", null: false
-    t.string "category", limit: 31, null: false
-    t.string "setting", limit: 31, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adventure_id"], name: "index_tile_pictures_on_adventure_id"
-    t.index ["user_id"], name: "index_tile_pictures_on_user_id"
+  create_table 'tile_pictures', id: :serial, force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'adventure_id'
+    t.string 'name', limit: 63, null: false
+    t.text 'description', default: '', null: false
+    t.string 'path', null: false
+    t.string 'category', limit: 31, null: false
+    t.string 'setting', limit: 31, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['adventure_id'], name: 'index_tile_pictures_on_adventure_id'
+    t.index ['user_id'], name: 'index_tile_pictures_on_user_id'
   end
-
 end

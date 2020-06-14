@@ -18,10 +18,9 @@ class CreateThings < ActiveRecord::Migration[5.0]
       t.integer :range,           null: false, default: 0
       t.text :pickup
       t.text :drop
-      t.integer :max_carry,       null: false, default: 25000
+      t.integer :max_carry,       null: false, default: 25_000
       t.integer :max_stack,       null: false, default: 1
       t.boolean :buyable,         null: false, default: false
-
 
       t.string :activate_on,      null: false, default: Thing::ACTIVATE_NONE, limit: 31
       t.integer :power_cost,      null: false, default: 0
