@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_140724) do
+ActiveRecord::Schema.define(version: 2020_06_15_145003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 2020_06_15_140724) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "sprite_map_id", null: false
+  end
+
+  create_table "creature_things", force: :cascade do |t|
+    t.bigint "creature_id", null: false
+    t.bigint "thing_id", null: false
+    t.integer "count"
+    t.boolean "equipped"
+    t.integer "drop_percent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creature_id", "thing_id"], name: "idx_unique_creature_things", unique: true
+    t.index ["creature_id"], name: "index_creature_things_on_creature_id"
+    t.index ["thing_id"], name: "index_creature_things_on_thing_id"
   end
 
   create_table "creatures", force: :cascade do |t|
@@ -153,6 +166,8 @@ ActiveRecord::Schema.define(version: 2020_06_15_140724) do
     t.index ["adventure_id"], name: "index_things_on_adventure_id"
   end
 
+  add_foreign_key "creature_things", "creatures"
+  add_foreign_key "creature_things", "things"
   add_foreign_key "creatures", "adventures"
   add_foreign_key "map_regions", "maps"
   add_foreign_key "map_regions", "regions"

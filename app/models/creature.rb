@@ -25,4 +25,5 @@ class Creature < ApplicationRecord
   ALLIANCES = [ENEMY, FRIENDLY, NEUTRAL, THIEF].freeze
 
   belongs_to :adventure
+  has_many :creature_things
 end

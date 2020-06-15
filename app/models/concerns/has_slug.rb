@@ -19,7 +19,7 @@ module HasSlug
       return nil unless str
 
       tmp = str.to_s.strip.gsub(/[\s_-]+/, '-').downcase
-      tmp = tmp + "-#{ Time.now.strftime('%y%m%d%H%M%S') }"
+      tmp = tmp + "-#{ Time.now.strftime('%y%m%d%H%M') }#{ rand(1000) }"
       tmp
     end
   end

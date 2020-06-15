@@ -7,6 +7,7 @@ class Thing < ApplicationRecord
   CATEGORIES = [TREASURE, WEAPON, ARMOR].freeze
 
   belongs_to :adventure
+  has_many :creature_things
 
   validates :name, presence: true
 end
