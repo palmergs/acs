@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_131116) do
+ActiveRecord::Schema.define(version: 2020_06_15_133825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,10 +103,33 @@ ActiveRecord::Schema.define(version: 2020_06_15_131116) do
     t.index ["map_id"], name: "index_terrains_on_map_id"
   end
 
+  create_table "things", force: :cascade do |t|
+    t.bigint "adventure_id", null: false
+    t.string "name", null: false
+    t.text "descr", default: "", null: false
+    t.string "category", default: "treasure", null: false
+    t.integer "weight", default: 1, null: false
+    t.integer "value", default: 0, null: false
+    t.boolean "droppable", default: true, null: false
+    t.integer "power", default: 0, null: false
+    t.integer "attack", default: 0, null: false
+    t.integer "breakability", default: 0, null: false
+    t.boolean "magic", default: false, null: false
+    t.integer "range", default: 0, null: false
+    t.integer "max_carry", default: 25000, null: false
+    t.integer "max_stack", default: 1, null: false
+    t.boolean "buyable", default: false, null: false
+    t.integer "tile_idx", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adventure_id"], name: "index_things_on_adventure_id"
+  end
+
   add_foreign_key "map_regions", "maps"
   add_foreign_key "map_regions", "regions"
   add_foreign_key "maps", "adventures"
   add_foreign_key "regions", "adventures"
   add_foreign_key "rooms", "regions"
   add_foreign_key "terrains", "maps"
+  add_foreign_key "things", "adventures"
 end

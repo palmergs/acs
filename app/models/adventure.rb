@@ -6,6 +6,7 @@ class Adventure < ApplicationRecord
   belongs_to :sprite_map
   has_many :maps
   has_many :regions
+  has_many :things
 
   PUBLIC = 'public'
   PRIVATE = 'private'
