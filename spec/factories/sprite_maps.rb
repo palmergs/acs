@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :sprite_map do
-    name { "MyString" }
-    descr { "MyText" }
-    sprite_width { 1 }
-    sprite_height { 1 }
-    width { 1 }
-    height { 1 }
+    name { Faker::File.file_name(ext: 'png') }
+    path { "#{ File.join(Faker::File.dir, self.name) }" }
+    sprite_width { 64 }
+    sprite_height { 96 }
+    width { 640 }
+    height { 960 }
   end
 end

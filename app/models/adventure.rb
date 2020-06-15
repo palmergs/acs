@@ -3,6 +3,8 @@
 class Adventure < ApplicationRecord
   include HasSlug
 
+  belongs_to :sprite_map
+
   PUBLIC = 'public'
   PRIVATE = 'private'
   ACCESS = [PUBLIC, PRIVATE].freeze

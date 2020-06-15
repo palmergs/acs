@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :adventure do
+    sprite_map
     name { Faker::Book.title }
     descr { 'An adventure set in ...' }
     intro { 'Once upon a time...' }
