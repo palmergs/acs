@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'home/about.html.haml', type: :view do
-  pending "add some examples to (or delete) #{ __FILE__ }"
+  it 'can render' do
+    render
+    expect(rendered).to match(/About/)
+  end
 end
