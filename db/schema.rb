@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_001931) do
+ActiveRecord::Schema.define(version: 2020_06_15_003443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 2020_06_15_001931) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "map_regions", force: :cascade do |t|
+    t.bigint "map_id", null: false
+    t.bigint "region_id", null: false
+    t.integer "map_x", default: 20, null: false
+    t.integer "map_y", default: 20, null: false
+    t.integer "region_x", default: 20, null: false
+    t.integer "region_y", default: 20, null: false
+    t.string "travel", limit: 50, default: "ask-before", null: false
+    t.text "enter_region"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_id"], name: "index_map_regions_on_map_id"
+    t.index ["region_id"], name: "index_map_regions_on_region_id"
+  end
+
   create_table "maps", force: :cascade do |t|
     t.bigint "adventure_id", null: false
     t.string "name", limit: 100, null: false
@@ -38,5 +53,19 @@ ActiveRecord::Schema.define(version: 2020_06_15_001931) do
     t.index ["adventure_id"], name: "index_maps_on_adventure_id"
   end
 
+  create_table "regions", force: :cascade do |t|
+    t.bigint "adventure_id", null: false
+    t.string "name", limit: 200, null: false
+    t.text "descr", default: "", null: false
+    t.integer "width", default: 40, null: false
+    t.integer "height", default: 40, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adventure_id"], name: "index_regions_on_adventure_id"
+  end
+
+  add_foreign_key "map_regions", "maps"
+  add_foreign_key "map_regions", "regions"
   add_foreign_key "maps", "adventures"
+  add_foreign_key "regions", "adventures"
 end
