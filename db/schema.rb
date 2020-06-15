@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_145003) do
+ActiveRecord::Schema.define(version: 2020_06_15_152009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actors", force: :cascade do |t|
+    t.string "category", default: "npc", null: false
+    t.bigint "room_id", null: false
+    t.bigint "creature_id", null: false
+    t.integer "x", default: 0, null: false
+    t.integer "y", default: 0, null: false
+    t.integer "speed", default: 6, null: false
+    t.integer "life", default: 10, null: false
+    t.integer "life_temp", default: 0, null: false
+    t.integer "power", default: 10, null: false
+    t.integer "power_temp", default: 0, null: false
+    t.integer "constitution", default: 10, null: false
+    t.integer "wisdom", default: 10, null: false
+    t.integer "strength", default: 10, null: false
+    t.integer "size", default: 10, null: false
+    t.integer "dexterity", default: 10, null: false
+    t.integer "encumbrance", default: 0, null: false
+    t.integer "missile_skill", default: 10, null: false
+    t.integer "armor_skill", default: 0, null: false
+    t.integer "dodge_skill", default: 25, null: false
+    t.integer "melee_skill", default: 25, null: false
+    t.integer "parry_skill", default: 25, null: false
+    t.string "magical_defense", default: "none", null: false
+    t.string "personality", default: "Brave", null: false
+    t.string "outlook", default: "Aggressive", null: false
+    t.string "alliance", default: "Enemy", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creature_id"], name: "index_actors_on_creature_id"
+    t.index ["room_id"], name: "index_actors_on_room_id"
+  end
 
   create_table "adventures", force: :cascade do |t|
     t.string "name", limit: 100, null: false
@@ -166,6 +198,8 @@ ActiveRecord::Schema.define(version: 2020_06_15_145003) do
     t.index ["adventure_id"], name: "index_things_on_adventure_id"
   end
 
+  add_foreign_key "actors", "creatures"
+  add_foreign_key "actors", "rooms"
   add_foreign_key "creature_things", "creatures"
   add_foreign_key "creature_things", "things"
   add_foreign_key "creatures", "adventures"
