@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_152009) do
+ActiveRecord::Schema.define(version: 2020_06_15_160726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,21 @@ ActiveRecord::Schema.define(version: 2020_06_15_152009) do
     t.index ["adventure_id"], name: "index_creatures_on_adventure_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.bigint "thing_id", null: false
+    t.bigint "room_id"
+    t.bigint "actor_id"
+    t.integer "x", default: 0, null: false
+    t.integer "y", default: 0, null: false
+    t.integer "z", default: 0, null: false
+    t.boolean "readied", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_items_on_actor_id"
+    t.index ["room_id"], name: "index_items_on_room_id"
+    t.index ["thing_id"], name: "index_items_on_thing_id"
+  end
+
   create_table "map_regions", force: :cascade do |t|
     t.bigint "map_id", null: false
     t.bigint "region_id", null: false
@@ -164,6 +179,17 @@ ActiveRecord::Schema.define(version: 2020_06_15_152009) do
     t.index ["path"], name: "index_sprite_maps_on_path", unique: true
   end
 
+  create_table "terrain_creatures", force: :cascade do |t|
+    t.bigint "terrain_id", null: false
+    t.bigint "creature_id", null: false
+    t.text "message", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creature_id"], name: "index_terrain_creatures_on_creature_id"
+    t.index ["terrain_id", "creature_id"], name: "idx_unique_terrain_creature", unique: true
+    t.index ["terrain_id"], name: "index_terrain_creatures_on_terrain_id"
+  end
+
   create_table "terrains", force: :cascade do |t|
     t.bigint "map_id", null: false
     t.string "name", null: false
@@ -203,11 +229,16 @@ ActiveRecord::Schema.define(version: 2020_06_15_152009) do
   add_foreign_key "creature_things", "creatures"
   add_foreign_key "creature_things", "things"
   add_foreign_key "creatures", "adventures"
+  add_foreign_key "items", "actors"
+  add_foreign_key "items", "rooms"
+  add_foreign_key "items", "things"
   add_foreign_key "map_regions", "maps"
   add_foreign_key "map_regions", "regions"
   add_foreign_key "maps", "adventures"
   add_foreign_key "regions", "adventures"
   add_foreign_key "rooms", "regions"
+  add_foreign_key "terrain_creatures", "creatures"
+  add_foreign_key "terrain_creatures", "terrains"
   add_foreign_key "terrains", "maps"
   add_foreign_key "things", "adventures"
 end
