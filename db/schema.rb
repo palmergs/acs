@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_123212) do
+ActiveRecord::Schema.define(version: 2020_06_15_125447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,20 @@ ActiveRecord::Schema.define(version: 2020_06_15_123212) do
     t.index ["adventure_id"], name: "index_regions_on_adventure_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "region_id", null: false
+    t.string "name", null: false
+    t.text "descr", default: "", null: false
+    t.integer "width", default: 10, null: false
+    t.integer "height", default: 10, null: false
+    t.integer "region_x", default: 0, null: false
+    t.integer "region_y", default: 0, null: false
+    t.integer "wall_tile_idx", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_rooms_on_region_id"
+  end
+
   create_table "sprite_maps", force: :cascade do |t|
     t.string "name", null: false
     t.string "path", null: false
@@ -81,4 +95,5 @@ ActiveRecord::Schema.define(version: 2020_06_15_123212) do
   add_foreign_key "map_regions", "regions"
   add_foreign_key "maps", "adventures"
   add_foreign_key "regions", "adventures"
+  add_foreign_key "rooms", "regions"
 end

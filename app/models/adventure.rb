@@ -4,6 +4,8 @@ class Adventure < ApplicationRecord
   include HasSlug
 
   belongs_to :sprite_map
+  has_many :maps
+  has_many :regions
 
   PUBLIC = 'public'
   PRIVATE = 'private'

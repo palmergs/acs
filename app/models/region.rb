@@ -8,4 +8,7 @@ class Region < ApplicationRecord
 
   # Ways to get to this region from one or more maps
   has_many :map_regions
+
+  # Individual rooms within a region. They may not overlap.
+  has_many :rooms
 end
