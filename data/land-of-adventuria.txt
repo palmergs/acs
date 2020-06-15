@@ -1,0 +1,30 @@
+Land of Aventuria:
+
+    Treasure:
+        Gold. Weight 1, Value 1. Unlike most objects, you can carry up to 25,000 money units, provided you have the carrying capacity (or the units are set to weigh nothing).
+        Red key. Weight 3, Value 1. Used to open doors in 'Agent 00111'.
+        Clothing scrap. Weight 5, Value 1. Found in 'Deep Dank Dungeon'. Disappears when dropped.
+        Tapestry. Weight 740, Value 1000. Found in 'Deep Dank Dungeon'.
+        Silver goblet. Weight 300, Value 200. Found in 'Deep Dank Dungeon'.
+        Jewel packet. Weight 5, Value 500. Found in various places.
+        Magic bag. Weight -500, Value 340. Found in 'Deep Dank Dungeon' and 'Save the Galaxy!'. Negative weight means it's effectively a bag of holding.
+        Microfilm. Weight 1, Value 1000. Found in 'Agent 00111'.
+        Kidnapped girl. Weight 500, Value 0. Found in 'Agent 00111'.
+        Stairway scroll. Weight 3, Value 1000. Used to reveal the secret staircase in 'Deep Dank Dungeon'.
+        Crystite horde. Weight 500, Value 2500. Found in 'Deep Dank Dungeon' and 'Save the Galaxy!'.
+        Diamond packet. Weight 2, Value 2000. Found in 'Across the Delaware!'
+        Autograph. Weight 1, Value 0. Found in 'Across the Delaware!'
+        Boat: Weight 100, Value 640. Found in 'Across the Delaware!'
+    Ranged weapons:
+        Pistol. Weight 50, Value 200. Power 6, Range 9, Attack Adjustment 0%, Chance of Breaking 1%. Not magic.
+        Bow. Weight 200, Value 200. Power 4, Range 6, Attack Adjustment -10%, Chance of Breaking 3%. Not magic.
+    Melee weapons:
+        Dagger. Weight 30, Value 50. Power 2, Attack Adjustment 0%, Chance of Breaking 1%. Not magic.
+        Long sword. Weight 150, Value 340. Power 5, Attack Adjustment -10%, Chance of Breaking 2%. Not magic.
+        Sword. Weight 75, Value 100. Power 5, Attack Adjustment 10%, Chance of Breaking 0%. Not magic.
+        Battle axe. Weight 150, Value 250. Power 5, Attack Adjustment 5%, Chance of Breaking 2%. Not magic.
+    Armor:
+        Light shield. Weight 75, Value 179. Power 2, Attack Adjustment -10%, Chance of Breaking 9%. Not magic.
+        Plate mail. Weight 340, Value 700. Power 5, Attack Adjustment -35%, Chance of Breaking 1%. Not magic.
+        Chain mail. Weight 200, Value 440. Power 3, Attack Adjustment -15%, Chance of Breaking 1%. Not magic.
+        Shield wand. Weight 20, Value 2000. Power 4, Attack Adjustment 0%, Chance of Breaking 1%. Not magic.

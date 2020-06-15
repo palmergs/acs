@@ -1,0 +1,43 @@
+Change Life Force of victim. You choose an amount from -63 to 63, as well as whether the change is permanent or temporary. (The manual suggests that you can simulate a poison dart trap by having one effect raise the character's Life Force temporarily and another lower it by the same amount permanently. This will cause it to tick down a certain amount over time. I'll talk about how to chain effects later in the update.)
+Change Power of victim. This works the same way as the previous option, but note that Power naturally moves toward the victim's Wisdom score. If you increase Power over Wisdom temporarily, it will decay faster.
+Increase victim's... You can choose any stat or skill, other than Power and Life Force. Stats go up 1; skills go up 5%. All changes are permanent.
+Decrease victim's... Same deal here.
+Increase Magic Defense, but not above... You have four options here: 'no magical defense', 'non-magic weapons do half damage', 'only magic weapons do damage', and 'magic weapons do half damage' (and non-magic weapons do no damage). This spell moves the victim up one step on the Magic Defense scale.
+Decrease Magic Defense, but not below... Same deal here.
+Give to victim one item. You choose the thing the victim obtains.
+Display long message. Those are those big boxes of text that the help squares display. The game has space to store 254 messages, each of which has eight lines of text, each of which has 32 characters.
+Play music. You choose any of the tunes or special effects in the game's library, and it plays once (except for a few sounds that specifically state they're 'endless', which will play until another sound is made).
+Rid room of every uncarried thing. You choose the thing in question. That's how the stairway scroll in 'Deep Dank Dungeon' worked; it removed a thing that looked like a blank floor and revealed the staircase underneath.
+Add to room one thing. You choose the thing in question.
+Activate all things at this place. I'll describe this a bit later, as it's more appropriate for spaces than for items, but the option is here.
+Do nothing. Not much point in this for a magic item, but it's a useful option for spells (that is, things that are spells, as opposed to spell effects), which I'll cover a bit later.
+Kill anyone but an owner of item. The manual warns against instant death effects, and rightly so, but it does give you the option.
+Summon or banish creature. You can set this to either banish all creatures in the room, which effectively destroys them and everything they're carrying (so don't use it on something that nicked a plot coupon!), or to summon a creature. The creature arrives a turn or two later.
+
+summary:
+
+Change Life Force of victim: the amount and type of the change.
+Change Power of victim: the amount and type of the change.
+Increase victim's...: the stat or skill to be affected.
+Decrease victim's...: the stat or skill to be affected.
+Increase Magic Defense, but not above...: the cap on increases.
+Decrease Magic Defense, but not below...: the cap on decreases.
+Give to victim one item: the thing obtained.
+Display long message: the long message displayed. (This is how the help squares work.)
+Play music: the sound played.
+Rid room of every uncarried thing: the thing in question.
+Add to room one thing: the thing in question.
+Activate all things at this place: isn't customized, so no point making it a custom space.
+Do nothing: no customization.
+Kill anyone but an owner of item: the thing in question.
+Summon or banish creature: whether to summon or banish, and, if summon, what creature.
+
+example:  Using effects to light up a room
+
+You have a dark room which the adventurer can enter and stumble around in, but if they find a lantern and bring it into the room, it'll be lit up, revealing its contents. First, set up the room the way it'll look when fully lit. Then, cover everything with a 'darkness' thing that's just an ordinary space. At the entrance to the room, place the following things, from the top down:
+
+    An 'activate all things' space, set not to disappear after use.
+    A space set only open to owners of the lantern. (Note that entry conditions are only checked for the topmost thing, so you can still move here even if you don't have one.) This space will cast a 'remove all' spell targeting darkness things and have a short text message describing the lantern lighting up the room. It will also disappear after it's used.
+    A space set only open to those who do not own a lantern. This space will cast a 'do nothing' spell and have a short text message describing how dark the room is. Whether or not it disappears when used is up to you.
+
+As an exercise to the reader: there are a couple of ways this could be improved. It assumes that there is only one entrance to the dark room. It also assumes that the character will not enter the room without the lantern after having entered the room with the lantern. Fix either or both problems. (The second is easier than the first, but they both use the same basic technique.)
