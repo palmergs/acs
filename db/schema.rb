@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_125447) do
+ActiveRecord::Schema.define(version: 2020_06_15_131116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,9 +91,22 @@ ActiveRecord::Schema.define(version: 2020_06_15_125447) do
     t.index ["path"], name: "index_sprite_maps_on_path", unique: true
   end
 
+  create_table "terrains", force: :cascade do |t|
+    t.bigint "map_id", null: false
+    t.string "name", null: false
+    t.text "descr", default: "", null: false
+    t.boolean "block", default: false, null: false
+    t.integer "encounter_chance", default: 0, null: false
+    t.integer "tile_idx", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_id"], name: "index_terrains_on_map_id"
+  end
+
   add_foreign_key "map_regions", "maps"
   add_foreign_key "map_regions", "regions"
   add_foreign_key "maps", "adventures"
   add_foreign_key "regions", "adventures"
   add_foreign_key "rooms", "regions"
+  add_foreign_key "terrains", "maps"
 end
