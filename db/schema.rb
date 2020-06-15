@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_133825) do
+ActiveRecord::Schema.define(version: 2020_06_15_140724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,34 @@ ActiveRecord::Schema.define(version: 2020_06_15_133825) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "sprite_map_id", null: false
+  end
+
+  create_table "creatures", force: :cascade do |t|
+    t.bigint "adventure_id", null: false
+    t.string "name", null: false
+    t.text "descr", default: "0", null: false
+    t.string "category", default: "npc", null: false
+    t.integer "speed", default: 6, null: false
+    t.integer "life", default: 10, null: false
+    t.integer "constitution", default: 10, null: false
+    t.integer "power", default: 10, null: false
+    t.integer "wisdom", default: 10, null: false
+    t.integer "strength", default: 10, null: false
+    t.integer "size", default: 10, null: false
+    t.integer "dexterity", default: 10, null: false
+    t.integer "missile_skill", default: 10, null: false
+    t.integer "armor_skill", default: 0, null: false
+    t.integer "dodge_skill", default: 25, null: false
+    t.integer "melee_skill", default: 25, null: false
+    t.integer "parry_skill", default: 25, null: false
+    t.string "magical_defense", default: "none", null: false
+    t.string "personality", default: "Brave", null: false
+    t.string "outlook", default: "Aggressive", null: false
+    t.string "alliance", default: "Enemy", null: false
+    t.integer "tile_idx", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adventure_id"], name: "index_creatures_on_adventure_id"
   end
 
   create_table "map_regions", force: :cascade do |t|
@@ -125,6 +153,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_133825) do
     t.index ["adventure_id"], name: "index_things_on_adventure_id"
   end
 
+  add_foreign_key "creatures", "adventures"
   add_foreign_key "map_regions", "maps"
   add_foreign_key "map_regions", "regions"
   add_foreign_key "maps", "adventures"
