@@ -29,6 +29,6 @@ class SpriteMap < ApplicationRecord
 
   # Given a sprite position in x,y return the pixel position and size
   def rect x, y
-    [ x * sprite_width, y * sprites_per_row, sprite_width, sprite_height ]
+    [x * sprite_width, y * sprites_per_row, sprite_width, sprite_height]
   end
 end
