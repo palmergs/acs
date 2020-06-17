@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::RegionsController < ApiController
   def index
     @regions = Region.all
@@ -37,7 +39,7 @@ class Api::V1::RegionsController < ApiController
   def create_params
     params.from_jsonapi.
         require(:region).
-        permit(:name, :descr)
+        permit(:adventure_id, :name, :descr)
   end
 
   def update_params
