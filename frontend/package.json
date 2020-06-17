@@ -2,10 +2,10 @@
   "name": "frontend",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for frontend goes here",
-  "repository": "",
+  "description": "A front-end application for ACS",
+  "repository": "https://github.com/palmergs/acs",
   "license": "MIT",
-  "author": "",
+  "author": "Galen Palmer <palmergs@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
