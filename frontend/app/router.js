@@ -10,7 +10,11 @@ Router.map(function() {
   this.route('about');
   this.route('adventures', function() {
     this.route('adventure', { path: "/:adventure_id" }, function() {
-
+      this.route('maps');
+      this.route('regions');
+      this.route('rooms');
+      this.route('creatures');
+      this.route('things');
     });
   });
 });
