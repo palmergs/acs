@@ -1,6 +1,3 @@
-{{outlet}}
-<h3>{{ model.name }}</h3>
-<h4>Description</h4>
-<div>{{ model.descr }}</div>
-<h4>Introduction Text</h4>
-<div>{{ model.intro }}</div>
+<EditableField @label="Title" @value={{ model.name }} @newlines=false/>
+<EditableField @label="Description" @value={{ model.descr }}/>
+<EditableField @label="Introduction" @value={{ model.intro }} />
