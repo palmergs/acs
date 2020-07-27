@@ -9,3 +9,18 @@
 <label class="text-sm pb-0 mb-0">Introduction</label>
 <EditableArea @value={{ this.adventure.intro }}
               @onUpdate={{ fn this.updateValue 'intro' }}/>
+
+<label class="text-sm pb-0 mb-0">Rating</label>
+<EditableField @value={{ this.adventure.rating }}
+               @options={{ ['kids', 'general', 'serious'] }}
+               @onUpdate={{ fn this.updateValue 'rating' }}/>
+
+<label class="text-sm pb-0 mb-0">Genre</label>
+<EditableField @value={{ this.adventure.genre }}
+               @options={{ ['fantasy', 'spy', 'scifi'] }}
+               @onUpdate={{ fn this.updateValue 'genre' }}/>
+
+<label class="text-sm pb-0 mb-0">Access</label>
+<EditableField @value={{ this.adventure.access }}
+               @options={{ ['public', 'private'] }}
+               @onUpdate={{ fn this.updateValue 'access' }}/>
