@@ -12,6 +12,7 @@ export default class EditableFieldComponent extends Component {
 
   @action cancel() {
     this.isEditing = false;
+
   }
 
   @action submit() {

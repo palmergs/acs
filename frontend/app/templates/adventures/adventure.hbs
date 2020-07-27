@@ -1,3 +1,11 @@
-<EditableField @label="Title" @value={{ model.name }} @newlines=false/>
-<EditableArea @label="Description" @value={{ model.descr }}/>
-<EditableArea @label="Introduction" @value={{ model.intro }} />
+<label class="text-sm pb-0 mb-0">Title</label>
+<EditableField @value={{ @model.name }}
+               @onUpdate={{ set @model.name _ }}/>
+
+<label class="text-sm pb-0 mb-0">Description</label>
+<EditableArea @value={{ @model.descr }}
+              @onUpdate={{ set @model.descr _ }}/>
+
+<label class="text-sm pb-0 mb-0">Introduction</label>
+<EditableArea @value={{ @model.intro }}
+              @onUpdate={{ set @model.intro _ }}/>
