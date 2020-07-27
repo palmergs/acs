@@ -1,0 +1,40 @@
+<label class="text-sm pb-0 mb-0">Title</label>
+<EditableField @value={{ this.adventure.name }}
+               @onUpdate={{ fn this.updateValue 'name' }}/>
+
+<label class="text-sm pb-0 mb-0">Description</label>
+<EditableArea @value={{ this.adventure.descr }}
+              @onUpdate={{ fn this.updateValue 'descr' }}/>
+
+<label class="text-sm pb-0 mb-0">Introduction</label>
+<EditableArea @value={{ this.adventure.intro }}
+              @onUpdate={{ fn this.updateValue 'intro' }}/>
+
+<label class="text-sm pb-0 mb-0">Rating</label>
+<EditableField @value={{ this.adventure.rating }}
+               @options={{ ['kids', 'general', 'serious'] }}
+               @onUpdate={{ fn this.updateValue 'rating' }}/>
+
+<label class="text-sm pb-0 mb-0">Genre</label>
+<EditableField @value={{ this.adventure.genre }}
+               @options={{ ['fantasy', 'spy', 'scifi'] }}
+               @onUpdate={{ fn this.updateValue 'genre' }}/>
+
+<label class="text-sm pb-0 mb-0">Access</label>
+<EditableField @value={{ this.adventure.access }}
+               @options={{ ['public', 'private'] }}
+               @onUpdate={{ fn this.updateValue 'access' }}/>
+
+<div class="flex mt-2">
+  <button type="button"
+          class="px-4 py-2 rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none"
+          {{ on "click" this.save }} >
+    Create
+  </button>
+
+  <button type="button"
+          class="ml-2 px-4 p-2 rounded bg-white border border-bg-purple-600 shadow-md text-purple-600 hover:shadow-lg"
+          {{ on "click" this.cancel }} >
+    Cancel
+  </button>
+</div>
