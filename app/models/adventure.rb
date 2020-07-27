@@ -22,6 +22,10 @@ class Adventure < ApplicationRecord
   SERIOUS = 'serious'
   RATING = [KIDS, GENERAL, SERIOUS].freeze
 
+  before_validation(on: :create) do 
+    self.sprite_map = SpriteMap.order(created_at: :asc).first if self.sprite_map_id.nil?
+  end
+
   scope :by_rating, ->(rating) {
     where(rating: rating) if rating
   }
