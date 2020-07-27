@@ -4,11 +4,12 @@
       <input type="text"
              class="block w-full text-gray-800" 
              value={{ @value }} 
-             onblur={{action submit}}
+             {{on "blur" submit }}
+             {{on "input" update }}
              {{did-insert this.focus}}/>
     </div>
   {{else}}
-    <div onclick={{action startEditing}}>
+    <div {{on "click" startEditing}}>
       {{ @value }}
     </div>
   {{/if}}

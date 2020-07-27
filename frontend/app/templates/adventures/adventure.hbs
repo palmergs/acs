@@ -1,11 +1,11 @@
 <label class="text-sm pb-0 mb-0">Title</label>
-<EditableField @value={{ @model.name }}
-               @onUpdate={{ set @model.name _ }}/>
+<EditableField @value={{ this.adventure.name }}
+               @onUpdate={{ fn this.updateValue 'name' }}/>
 
 <label class="text-sm pb-0 mb-0">Description</label>
-<EditableArea @value={{ @model.descr }}
-              @onUpdate={{ set @model.descr _ }}/>
+<EditableArea @value={{ this.adventure.descr }}
+              @onUpdate={{ fn this.updateValue 'descr' }}/>
 
 <label class="text-sm pb-0 mb-0">Introduction</label>
-<EditableArea @value={{ @model.intro }}
-              @onUpdate={{ set @model.intro _ }}/>
+<EditableArea @value={{ this.adventure.intro }}
+              @onUpdate={{ fn this.updateValue 'intro' }}/>

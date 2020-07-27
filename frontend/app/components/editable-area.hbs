@@ -2,11 +2,12 @@
   {{#if isEditing}}
     <div>
       <textarea class="block w-full text-gray-800" 
-                onblur={{action submit}}
+                {{on "blur" submit }}
+                {{on "input" update }}
                 {{did-insert this.focus}}>{{ @value }}</textarea>
     </div>
   {{else}}
-    <div onclick={{action startEditing}}>
+    <div {{on "click" startEditing}}>
       {{ @value }}
     </div>
   {{/if}}
