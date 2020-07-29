@@ -27,9 +27,9 @@ class Adventure < ApplicationRecord
   validates :rating, presence: true, inclusion: { in: RATING }
   validates :access, presence: true, inclusion: { in: ACCESS }
 
-  before_validation(on: :create) do 
-    self.slug = self.name.downcase.strip.gsub(/[\s[:punct:]]+/, '-')
-    self.sprite_map = SpriteMap.order(created_at: :asc).first if self.sprite_map_id.nil?
+  before_validation(on: :create) do
+    self.slug = name.downcase.strip.gsub(/[\s[:punct:]]+/, '-')
+    self.sprite_map = SpriteMap.find_by(name: genre)
   end
 
   scope :by_rating, ->(rating) {

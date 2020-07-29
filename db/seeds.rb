@@ -6,16 +6,39 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-sprites = SpriteMap.find_or_create_by(
-    name: 'default', 
-    path: 'default-1280x960.png',
-    width: 1280,
-    height: 960,
-    sprite_width: 64,
-    sprite_height: 96)
+SpriteMap.find_or_create_by(name: 'default') do |obj|
+  obj.path = 'default-1280x960.png'
+  obj.width = 1280
+  obj.height = 960
+  obj.sprite_width = 64
+  obj.sprite_height = 96
+end
+
+SpriteMap.find_or_create_by(name: Adventure::FANTASY) do |obj|
+  obj.path = 'default-1280x960.png'
+  obj.width = 1280
+  obj.height = 960
+  obj.sprite_width = 64
+  obj.sprite_height = 96
+end
+
+SpriteMap.find_or_create_by(name: Adventure::SPY) do |obj|
+  obj.path = 'default-1280x960.png'
+  obj.width = 1280
+  obj.height = 960
+  obj.sprite_width = 64
+  obj.sprite_height = 96
+end
+
+SpriteMap.find_or_create_by(name: Adventure::SCIFI) do |obj|
+  obj.path = 'default-1280x960.png'
+  obj.width = 1280
+  obj.height = 960
+  obj.sprite_width = 64
+  obj.sprite_height = 96
+end
 
 adventure = Adventure.find_or_create_by(name: 'Castle on the Hinterlands') do |obj|
-  obj.sprite_map = sprites
   obj.descr = 'An exciting adventure set in the untamed wilderness of the kingdom.'
   obj.intro = 'Moneyless and on the run you have fled to the untamed wilderness to try and earn your fortune.'
 end
@@ -33,4 +56,3 @@ region = Region.find_or_create_by(name: 'The Castle') do |obj|
   obj.width = 40
   obj.height = 40
 end
-

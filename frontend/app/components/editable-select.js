@@ -19,7 +19,7 @@ export default class EditableSelectComponent extends Component {
   }
 
   @action prev() {
-    let index = this.args.options.findIndex((value) => val == this.value) - 1;
+    let index = this.args.options.findIndex((val) => val == this.value) - 1;
     if(index < 0) { index = this.args.options.length - 1; }
 
     this.value = this.args.options[index];
