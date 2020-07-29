@@ -4,9 +4,10 @@ class Adventure < ApplicationRecord
   include HasSlug
 
   belongs_to :sprite_map
-  has_many :maps
-  has_many :regions
-  has_many :things
+  has_many :maps, dependent: :destroy
+  has_many :regions, dependent: :destroy
+  has_many :things, dependent: :destroy
+  has_many :creatures, dependent: :destroy
 
   PUBLIC = 'public'
   PRIVATE = 'private'
@@ -29,7 +30,7 @@ class Adventure < ApplicationRecord
 
   before_validation(on: :create) do
     self.slug = name.downcase.strip.gsub(/[\s[:punct:]]+/, '-')
-    self.sprite_map = SpriteMap.find_by(name: genre)
+    self.sprite_map = SpriteMap.find_by(name: genre) unless sprite_map_id
     Rails.logger.debug("GENRE=#{ genre } SPRITES=#{ SpriteMap.find_by(name: genre) }")
   end
 

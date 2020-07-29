@@ -9,4 +9,5 @@ export default class AdventureModel extends Model {
   @attr('string') access;
   @hasMany maps;
   @hasMany regions;
+  @hasMany creatures;
 }

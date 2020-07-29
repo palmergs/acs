@@ -5,7 +5,7 @@ module HasSlug
 
   included do
     validates :name, presence: true
-    validates :slug, presence: true, uniqueness: true
+    validates :slug, presence: true
 
     before_validation on: :create do
       self.slug = slugify(name)

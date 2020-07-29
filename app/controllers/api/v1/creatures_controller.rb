@@ -37,12 +37,49 @@ class Api::V1::CreaturesController < ApiController
   def create_params
     params.from_jsonapi.
         require(:creature).
-        permit(:name, :descr)
+        permit(:name,
+               :descr,
+               :category,
+               :speed,
+               :life,
+               :constitution,
+               :power,
+               :wisdom,
+               :strength,
+               :size,
+               :dexterity,
+               :missile_skill,
+               :armor_skill,
+               :dodge_skill,
+               :melee_skill,
+               :parry_skill,
+               :magical_defense,
+               :personality,
+               :outlook,
+               :alliance)
   end
 
   def update_params
     params.from_jsonapi.
         require(:creature).
-        permit(:name, :descr)
+        permit(:name,
+               :descr,
+               :category,
+               :speed,
+               :life,
+               :constitution,
+               :power,
+               :wisdom,
+               :strength,
+               :size,
+               :dexterity,
+               :missile_skill,
+               :armor_skill,
+               :dodge_skill,
+               :melee_skill,
+               :parry_skill,
+               :magical_defense,
+               :personality,
+               :alliance)
   end
 end

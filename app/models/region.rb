@@ -7,8 +7,9 @@ class Region < ApplicationRecord
   belongs_to :adventure
 
   # Ways to get to this region from one or more maps
-  has_many :map_regions
+  has_many :map_regions, dependent: :destroy
+  has_many :maps, through: :map_regions
 
   # Individual rooms within a region. They may not overlap.
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
 end
