@@ -15,7 +15,7 @@ SpriteMap.find_or_create_by(name: 'default') do |obj|
 end
 
 SpriteMap.find_or_create_by(name: Adventure::FANTASY) do |obj|
-  obj.path = 'default-1280x960.png'
+  obj.path = 'fantasy-1280x960.png'
   obj.width = 1280
   obj.height = 960
   obj.sprite_width = 64
@@ -23,7 +23,7 @@ SpriteMap.find_or_create_by(name: Adventure::FANTASY) do |obj|
 end
 
 SpriteMap.find_or_create_by(name: Adventure::SPY) do |obj|
-  obj.path = 'default-1280x960.png'
+  obj.path = 'spy-1280x960.png'
   obj.width = 1280
   obj.height = 960
   obj.sprite_width = 64
@@ -31,7 +31,7 @@ SpriteMap.find_or_create_by(name: Adventure::SPY) do |obj|
 end
 
 SpriteMap.find_or_create_by(name: Adventure::SCIFI) do |obj|
-  obj.path = 'default-1280x960.png'
+  obj.path = 'scifi-1280x960.png'
   obj.width = 1280
   obj.height = 960
   obj.sprite_width = 64

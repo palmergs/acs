@@ -30,6 +30,7 @@ class Adventure < ApplicationRecord
   before_validation(on: :create) do
     self.slug = name.downcase.strip.gsub(/[\s[:punct:]]+/, '-')
     self.sprite_map = SpriteMap.find_by(name: genre)
+    Rails.logger.debug("GENRE=#{ genre } SPRITES=#{ SpriteMap.find_by(name: genre) }")
   end
 
   scope :by_rating, ->(rating) {

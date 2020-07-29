@@ -4,7 +4,7 @@
 # Each image on the sprite map is assumed to be the same
 # size.
 class SpriteMap < ApplicationRecord
-  validates :path, presence: true, uniqueness: true
+  validates :path, presence: true
   validates :name, presence: true
 
   def max_idx
