@@ -1,0 +1,12 @@
+<div class="text-2xl mb-2" >
+  <button class="float-left text-2xl px-2 mr-2 border rounded-md border-solid border-white"
+       {{on "click" this.prev }}>
+    &lt;
+  </button>
+  {{ @value }}&nbsp;
+  <button class="float-right text-2xl px-2 border rounded-md border-solid border-white"
+       {{on "click" this.next }}>
+    &gt;
+  </button>
+</div>
+
