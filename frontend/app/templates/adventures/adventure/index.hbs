@@ -1,0 +1,26 @@
+<label class="text-sm pb-0 mb-0">Title</label>
+<EditableField @value={{ @model.name }}
+               @onUpdate={{ fn this.updateValue 'name' }}/>
+
+<label class="text-sm pb-0 mb-0">Description</label>
+<EditableArea @value={{ @model.descr }}
+              @onUpdate={{ fn this.updateValue 'descr' }}/>
+
+<label class="text-sm pb-0 mb-0">Introduction</label>
+<EditableArea @value={{ @model.intro }}
+              @onUpdate={{ fn this.updateValue 'intro' }}/>
+
+<label class="text-sm pb-0 mb-0">Rating</label>
+<EditableSelect @value={{ @model.rating }}
+                @options={{ array 'kids' 'general' 'serious' }}
+                @onUpdate={{ fn this.updateValue 'rating' }}/>
+
+<label class="text-sm pb-0 mb-0">Genre</label>
+<EditableSelect @value={{ @model.genre }}
+                @options={{ array 'fantasy' 'spy' 'scifi' }}
+                @onUpdate={{ fn this.updateValue 'genre' }}/>
+
+<label class="text-sm pb-0 mb-0">Access</label>
+<EditableSelect @value={{ @model.access }}
+                @options={{ array 'public' 'private' }}
+                @onUpdate={{ fn this.updateValue 'access' }}/>
