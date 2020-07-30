@@ -30,4 +30,8 @@ class Creature < ApplicationRecord
   has_many :things, through: :creature_things
 
   has_many :actors, dependent: :destroy
+
+  scope :in_adventure, ->(id) {
+    where(adventure_id: id)
+  }
 end
