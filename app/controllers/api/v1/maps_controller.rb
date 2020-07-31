@@ -2,7 +2,10 @@
 
 class Api::V1::MapsController < ApiController
   def index
-    @maps = Map.all
+    filter = params.fetch(:filter, {})
+    @maps = Map.
+        in_adventure(filter).
+        by_name(filter)
     render json: MapSerializer.new(@maps).serializable_hash
   end
 

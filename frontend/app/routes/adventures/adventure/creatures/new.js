@@ -23,9 +23,4 @@ export default class AdventuresAdventureCreaturesNewRoute extends Route {
       alliance: 'Enemy'
     });
   }
-
-  setupController(controller) {
-    super.setupController(...arguments);
-    controller.set('creature', this.modelFor('adventures.adventure.creatures.new'));
-  }
 }
