@@ -34,4 +34,8 @@ class Creature < ApplicationRecord
   scope :in_adventure, ->(id) {
     where(adventure_id: id)
   }
+
+  before_validation(on: :create) do 
+    self.category = NPC unless self.category
+  end
 end

@@ -11,9 +11,9 @@
               @onUpdate={{ fn this.updateValue 'intro' }}/>
 
 <label class="text-sm pb-0 mb-0">Rating</label>
-<EditableField @value={{ this.adventure.rating }}
-               @options={{ ['kids', 'general', 'serious'] }}
-               @onUpdate={{ fn this.updateValue 'rating' }}/>
+<EditableSelect @value={{ this.adventure.rating }}
+                @options={{ ['kids', 'general', 'serious'] }}
+                @onUpdate={{ fn this.updateValue 'rating' }}/>
 
 <label class="text-sm pb-0 mb-0">Genre</label>
 <EditableField @value={{ this.adventure.genre }}

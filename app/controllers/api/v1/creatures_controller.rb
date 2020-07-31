@@ -1,4 +1,8 @@
 class Api::V1::CreaturesController < ApiController
+  # This is required because  fastjson_api sees the
+  # attribute `size` and assumes that it is a collection.
+  JSONAPI_OPTIONS = { is_collection: false }
+
   def index
     @creatures = Creature.all
     render json: CreatureSerializer.new(@creatures).serializable_hash
@@ -6,13 +10,13 @@ class Api::V1::CreaturesController < ApiController
 
   def show
     @creature = Creature.find(params[:id])
-    render json: CreatureSerializer.new(@creature).serializable_hash
+    render json: CreatureSerializer.new(@creature, JSONAPI_OPTIONS).serializable_hash
   end
 
   def update
     @creature = Creature.find(params[:id])
     if @creature.update(update_params)
-      render json: CreatureSerializer.new(@creature).serializable_hash
+      render json: CreatureSerializer.new(@creature, JSONAPI_OPTIONS).serializable_hash
     else
       render json: { errors: @creature.errors }, status: :unprocessable_entity
     end
@@ -21,7 +25,8 @@ class Api::V1::CreaturesController < ApiController
   def create
     @creature = Creature.new(create_params)
     if @creature.save
-      render json: CreatureSerializer.new(@creature).serializable_hash, status: :created
+      pp @creature
+      render json: CreatureSerializer.new(@creature, JSONAPI_OPTIONS).serializable_hash, status: :created
     else
       render json: { errors: @creature.errors }, status: :unprocessable_entity
     end
@@ -35,9 +40,10 @@ class Api::V1::CreaturesController < ApiController
   private
 
   def create_params
-    params.from_jsonapi.
+    params.from_jsonapi(:dash).
         require(:creature).
-        permit(:name,
+        permit(:adventure_id,
+               :name,
                :descr,
                :category,
                :speed,
@@ -80,6 +86,7 @@ class Api::V1::CreaturesController < ApiController
                :parry_skill,
                :magical_defense,
                :personality,
+               :outlook,
                :alliance)
   end
 end

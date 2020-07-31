@@ -18,6 +18,14 @@
                 class="text-xl">Creatures</LinkTo>
       </li>
     </ul>
+    
+    <hr class="py-2 my-2"/>
+
+    <LinkTo @route="adventures.adventure.creatures.new"
+            @model={{ @model }}
+            class="px-4 py-2 no-underline rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none">
+      Add Creature
+    </LinkTo>
   </div>
   <div class="w-2/3 px-2">
     {{outlet}}
