@@ -1,7 +1,8 @@
 class ThingSerializer
   include FastJsonapi::ObjectSerializer
   belongs_to :adventure
-  attributes :name,
+  attributes :category,
+             :name,
              :descr,
              :category,
              :weight,

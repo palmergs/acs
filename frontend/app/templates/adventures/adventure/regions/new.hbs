@@ -1,2 +1,25 @@
-<h3>New Region</h3>
-{{outlet}}
+<h3 class="text-2xl">New Region</h3>
+
+<label class="text-sm pb-0 mb-0">Name</label>
+<EditableField @value={{ @model.name }}
+               @onUpdate={{ fn this.updateValue 'name' }}/>
+
+<label class="text-sm pb-0 mb-0">Description</label>
+<EditableArea @value={{ @model.descr }}
+              @onUpdate={{ fn this.updateValue 'descr' }}/>
+
+<hr/>
+
+<div class="flex mt-2">
+  <button type="button"
+          class="px-4 py-2 rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none"
+          {{ on "click" this.save }} >
+    Create
+  </button>
+
+  <button type="button"
+          class="ml-2 px-4 p-2 rounded bg-white border border-bg-purple-600 shadow-md text-purple-600 hover:shadow-lg"
+          {{ on "click" this.cancel }} >
+    Cancel
+  </button>
+</div>

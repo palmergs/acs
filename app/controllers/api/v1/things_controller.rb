@@ -1,6 +1,7 @@
 class Api::V1::ThingsController < ApiController
   def index
-    @things = Thing.all
+    filters = params.fetch(:filter, {})
+    @things = Thing.in_adventure(filters).by_name(filters)
     render json: ThingSerializer.new(@things).serializable_hash
   end
 
@@ -35,14 +36,42 @@ class Api::V1::ThingsController < ApiController
   private
 
   def create_params
-    params.from_jsonapi.
+    params.from_jsonapi(:dash).
         require(:thing).
-        permit(:name, :descr)
+        permit(:adventure_id,
+               :category,
+               :name,
+               :descr,
+               :weight,
+               :value,
+               :droppable,
+               :power,
+               :attack,
+               :breakability,
+               :magic,
+               :range,
+               :max_carry,
+               :max_stack,
+               :buyable,
+               :tile_idx)
   end
 
   def update_params
-    params.from_jsonapi.
+    params.from_jsonapi(:dash).
         require(:thing).
-        permit(:name, :descr)
+        permit(:name,
+               :descr,
+               :weight,
+               :value,
+               :droppable,
+               :power,
+               :attack,
+               :breakability,
+               :magic,
+               :range,
+               :max_carry,
+               :max_stack,
+               :buyable,
+               :tile_idx)
   end
 end

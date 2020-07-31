@@ -1,19 +1,18 @@
 <div class="flex">
   <div class="w-1/3 px-2">
     <h3 class="text-2xl pb-2">Maps</h3>
-    <div>
-      <LinkTo @route="adventures.adventure" 
-              @model={{ @model.adventure }}
-              class="inline-block px-2 py-2">
-        &lt; back
-      </LinkTo>
 
-      <LinkTo @route="adventures.adventure.maps.new"
-              @model={{ @model.adventure }}
-              class="inline-block px-4 py-2 no-underline rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none">
-        Add Map
-      </LinkTo>
-    </div>
+    <LinkTo @route="adventures.adventure" 
+            @model={{ @model.adventure }}
+            class="px-2 py-2">
+      &lt; back
+    </LinkTo>
+
+    <LinkTo @route="adventures.adventure.maps.new"
+            @model={{ @model.adventure }}
+            class="px-4 py-2 no-underline rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none">
+      Add Map
+    </LinkTo>
 
     {{#if @model.maps}}
       <hr class="py-2 my-2"/>
