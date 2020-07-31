@@ -1,0 +1,10 @@
+<h3>Creatures</h3>
+
+
+{{#each @model as |creature|}}
+  <p>
+  <LinkTo @route="adventures.adventure.creatures.creature" @model={{ @creature }}>
+    {{ creature.name }}
+  </LinkTo>
+  </p>
+{{/each}}
