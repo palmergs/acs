@@ -1,21 +1,23 @@
+<h3>New Creature</h3>
+
 <label class="text-sm pb-0 mb-0">Name</label>
-<EditableField @value={{ this.creature.name }}
+<EditableField @value={{ @model.name }}
                @onUpdate={{ fn this.updateValue 'name' }}/>
 
 <label class="text-sm pb-0 mb-0">Description</label>
-<EditableArea @value={{ this.creature.descr }}
+<EditableArea @value={{ @model.descr }}
               @onUpdate={{ fn this.updateValue 'descr' }}/>
 
 <div class="flex">
   <div class="w-1/2 mr-1">
     <label class="text-sm pb-0 mb-0">Life</label>
-    <EditableField @value={{ this.creature.life }}
+    <EditableField @value={{ @model.life }}
                    @onUpdate={{ fn this.updateValue 'life' }}/>
   </div>
 
   <div class="w-1/2 pl-2">
     <label class="text-sm pb-0 mb-0">Power</label>
-    <EditableField @value={{ this.creature.power }}
+    <EditableField @value={{ @model.power }}
                    @onUpdate={{ fn this.updateValue 'power' }}/>
   </div>
 </div>
@@ -23,13 +25,13 @@
 <div class="flex">
   <div class="w-1/2 mr-1">
     <label class="text-sm pb-0 mb-0">Speed</label>
-    <EditableField @value={{ this.creature.speed }}
+    <EditableField @value={{ @model.speed }}
                    @onUpdate={{ fn this.updateValue 'speed' }}/>
   </div>
 
   <div class="w-1/2 pl-2">
     <label class="text-sm pb-0 mb-0">Size</label>
-    <EditableField @value={{ this.creature.size }}
+    <EditableField @value={{ @model.size }}
                    @onUpdate={{ fn this.updateValue 'size' }}/>
   </div>
 </div>
@@ -37,20 +39,20 @@
 <div class="flex">
   <div class="w-1/2 mr-1">
     <label class="text-sm pb-0 mb-0">Constitution</label>
-    <EditableField @value={{ this.creature.constitution }}
+    <EditableField @value={{ @model.constitution }}
                    @onUpdate={{ fn this.updateValue 'constitution' }}/>
 
     <label class="text-sm pb-0 mb-0">Wisdom</label>
-    <EditableField @value={{ this.creature.wisdom }}
+    <EditableField @value={{ @model.wisdom }}
                    @onUpdate={{ fn this.updateValue 'wisdom' }}/>
   </div>
   <div class="w-1/2 pl-1">
     <label class="text-sm pb-0 mb-0">Strength</label>
-    <EditableField @value={{ this.creature.strength }}
+    <EditableField @value={{ @model.strength }}
                    @onUpdate={{ fn this.updateValue 'strength' }}/>
 
     <label class="text-sm pb-0 mb-0">Dexterity</label>
-    <EditableField @value={{ this.creature.dexterity }}
+    <EditableField @value={{ @model.dexterity }}
                    @onUpdate={{ fn this.updateValue 'dexterity' }}/>
   </div>
 </div>
@@ -58,26 +60,26 @@
 <div class="flex">
   <div class="w-1/2 mr-1">
     <label class="text-sm pb-0 mb-0">Missile Skill</label>
-    <EditableField @value={{ this.creature.missileSkill }}
+    <EditableField @value={{ @model.missileSkill }}
                    @onUpdate={{ fn this.updateValue 'missileSkill' }}/>
 
     <label class="text-sm pb-0 mb-0">Melee Skill</label>
-    <EditableField @value={{ this.creature.meleeSkill }}
+    <EditableField @value={{ @model.meleeSkill }}
                    @onUpdate={{ fn this.updateValue 'meleeSkill' }}/>
   </div>
   <div class="w-1/2 pl-1">
     <label class="text-sm pb-0 mb-0">Dodge Skill</label>
-    <EditableField @value={{ this.creature.dodgeSkill }}
+    <EditableField @value={{ @model.dodgeSkill }}
                    @onUpdate={{ fn this.updateValue 'dodgeSkill' }}/>
 
     <label class="text-sm pb-0 mb-0">Armor Skill</label>
-    <EditableField @value={{ this.creature.armorSkill }}
+    <EditableField @value={{ @model.armorSkill }}
                    @onUpdate={{ fn this.updateValue 'armorSkill' }}/>
   </div>
 </div>
 
 <label class="text-sm pb-0 mb-0">Magical Defense</label>
-<EditableSelect @value={{ this.creature.magicalDefense }}
+<EditableSelect @value={{ @model.magicalDefense }}
                 @options={{ array 'none' 'partial' 'full' }}
                 @onUpdate={{ fn this.updateValue 'magicalDefense' }}/>
 

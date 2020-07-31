@@ -15,8 +15,8 @@ Router.map(function() {
       this.route('regions');
       this.route('rooms');
       this.route('creatures', function() {
-        this.route('creature', { path: ":creature_id" });
         this.route('new');
+        this.route('creature', { path: ':creature_id' });
       });
       this.route('things');
     });

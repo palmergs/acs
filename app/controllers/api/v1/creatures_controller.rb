@@ -4,7 +4,10 @@ class Api::V1::CreaturesController < ApiController
   JSONAPI_OPTIONS = { is_collection: false }
 
   def index
-    @creatures = Creature.all
+    filter = params.fetch(:filter, {})
+    @creatures = Creature.
+        in_adventure(filter).
+        by_name(filter)
     render json: CreatureSerializer.new(@creatures).serializable_hash
   end
 
@@ -66,7 +69,7 @@ class Api::V1::CreaturesController < ApiController
   end
 
   def update_params
-    params.from_jsonapi.
+    params.from_jsonapi(:dash).
         require(:creature).
         permit(:name,
                :descr,

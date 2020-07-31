@@ -14,4 +14,12 @@ class Thing < ApplicationRecord
   has_many :items, dependent: :destroy
 
   validates :name, presence: true
+
+  scope :in_adventure, ->(filters) {
+    where(adventure_id: filters[:adventure])
+  }
+
+  scope :by_name, ->(filters) {
+    where('things.name like ?', "#{ filters[:name] }%") if filters[:name].present?
+  }
 end

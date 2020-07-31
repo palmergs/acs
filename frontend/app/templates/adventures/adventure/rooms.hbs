@@ -1,1 +1,28 @@
-{{outlet}}
+<div class="flex">
+  <div class="w-1/3 px-2">
+    <h3 class="text-2xl pb-2">Rooms</h3>
+    <LinkTo @route="adventures.adventure" 
+            @model={{ @model.adventure }}
+            class="block px-2 py-2">
+      &lt; back
+    </LinkTo>
+
+    {{#if @model.rooms}}
+      <hr class="mt-4 pb-4"/>
+
+      <ul>
+        {{#each @model.rooms as |room|}}
+          <li>
+            <LinkTo @route="adventures.adventure.rooms.room"
+                    @model={{ room }} 
+                    class="text-xl">{{ room.name }}</LinkTo>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+  <div class="w-2/3 px-2">
+    {{outlet}}
+  </div>
+</div>
+

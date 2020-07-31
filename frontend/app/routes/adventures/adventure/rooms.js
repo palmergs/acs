@@ -1,5 +1,11 @@
 import Route from '@ember/routing/route';
 
 export default class AdventuresAdventureRoomsRoute extends Route {
-  // TODO: this might need to be nested under region
+  async model(params) {
+    const adventure = this.modelFor("adventures.adventure");
+    return {
+      adventure: adventure,
+      rooms: this.store.query('room', { filter: { adventure: adventure.id } })
+    };
+  }
 }

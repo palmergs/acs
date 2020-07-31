@@ -3,7 +3,7 @@
 
 {{#each @model as |creature|}}
   <p>
-  <LinkTo @route="adventures.adventure.creatures.creature" @model={{ @creature }}>
+  <LinkTo @route="creature" @model={{ creature }}>
     {{ creature.name }}
   </LinkTo>
   </p>

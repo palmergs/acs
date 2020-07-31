@@ -1,1 +1,33 @@
-{{outlet}}
+<div class="flex">
+  <div class="w-1/3 px-2">
+    <h3 class="text-2xl pb-2">Creatures</h3>
+    <LinkTo @route="adventures.adventure" 
+            @model={{ @model.adventure }}
+            class="block px-2 py-2">
+      &lt; back
+    </LinkTo>
+
+    <LinkTo @route="adventures.adventure.creatures.new"
+            @model={{ @model.adventure }}
+            class="px-4 py-2 no-underline rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none">
+      Add Creature
+    </LinkTo>
+
+    {{#if @model.creatures}}
+      <hr class="mt-4 pb-4"/>
+
+      <ul>
+        {{#each @model.creatures as |creature|}}
+          <li>
+            <LinkTo @route="adventures.adventure.creatures.creature"
+                    @model={{ creature }} 
+                    class="text-xl">{{ creature.name }}</LinkTo>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+  <div class="w-2/3 px-2">
+    {{outlet}}
+  </div>
+</div>

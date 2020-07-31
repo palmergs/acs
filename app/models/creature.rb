@@ -31,8 +31,12 @@ class Creature < ApplicationRecord
 
   has_many :actors, dependent: :destroy
 
-  scope :in_adventure, ->(id) {
-    where(adventure_id: id)
+  scope :in_adventure, ->(filters) {
+    where(adventure_id: filters[:adventure])
+  }
+
+  scope :by_name, ->(filters) {
+    where('creatures.name like ?', "#{ filters[:name] }%") if filters[:name].present?
   }
 
   before_validation(on: :create) do 
