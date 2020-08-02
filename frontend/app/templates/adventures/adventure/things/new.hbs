@@ -1,0 +1,86 @@
+<h3 class="text-2xl">New Thing</h3>
+
+<label class="text-sm pb-0 mb-0">Name</label>
+<EditableField @value={{ @model.name }}
+               @onUpdate={{ fn this.updateValue 'name' }}/>
+
+<label class="text-sm pb-0 mb-0">Description</label>
+<EditableArea @value={{ @model.descr }}
+              @onUpdate={{ fn this.updateValue 'descr' }}/>
+
+<label class="text-sm pb-0 mb-0">Category</label>
+<EditableSelect @value={{ @model.category }}
+                @options={{ array 'treasure' 'weapon' 'armor' }}
+                @onUpdate={{ fn this.updateValue 'category' }}/>
+
+<div class="flex">
+  <div class="w-1/2 pr-2">
+    <label class="text-sm pb-0 mb-0">Weight</label>
+    <EditableField @value={{ @model.weight }}
+                   @onUpdate={{ fn this.updateValue 'weight' }}/>
+  </div>
+  <div class="w-1/2 wl-2">
+    <label class="text-sm pb-0 mb-0">Value</label>
+    <EditableField @value={{ @model.value }}
+                   @onUpdate={{ fn this.updateValue 'value' }}/>
+  </div>
+</div>
+
+<div class="flex">
+  <div class="w-1/2 pr-2">
+    <label class="text-sm pb-0 mb-0">Max Carry</label>
+    <EditableField @value={{ @model.maxCarry }}
+                   @onUpdate={{ fn this.updateValue 'maxCarry' }}/>
+  </div>
+  <div class="w-1/2 wl-2">
+    <label class="text-sm pb-0 mb-0">Max Stack</label>
+    <EditableField @value={{ @model.maxStack }}
+                   @onUpdate={{ fn this.updateValue 'maxStack' }}/>
+  </div>
+</div>
+
+<div class="flex">
+  <div class="w-1/2 pr-2">
+    <label class="text-sm pb-0 mb-0">Droppable?</label>
+    <EditableSelect @value={{ @model.droppable }}
+                    @options={{ array 'Yes' 'No' }}
+                    @onUpdate={{ fn this.updateValue 'droppable' }}/>
+  </div>
+  <div class="w-1/2 wl-2">
+    <label class="text-sm pb-0 mb-0">Buyable?</label>
+    <EditableSelect @value={{ @model.buyable }}
+                    @options={{ array 'Yes' 'No' }}
+                    @onUpdate={{ fn this.updateValue 'buyable' }}/>
+  </div>
+</div>
+
+{{#if model.isWeapon }}
+  <div class="flex">
+    <div class="w-1/2 pr-2">
+      <label class="text-sm pb-0 mb-0">Power</label>
+      <EditableField @value={{ @model.power }}
+                     @onUpdate={{ fn this.updateValue 'power' }}/>
+    </div>
+    <div class="w-1/2 wl-2">
+      <label class="text-sm pb-0 mb-0">Range</label>
+      <EditableField @value={{ @model.range }}
+                     @onUpdate={{ fn this.updateValue 'range' }}/>
+    </div>
+  </div>
+{{/if}}
+
+<hr/>
+
+<div class="flex mt-2">
+  <button type="button"
+          class="px-4 py-2 rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none"
+          {{ on "click" this.save }} >
+    Create
+  </button>
+
+  <button type="button"
+          class="ml-2 px-4 p-2 rounded bg-white border border-bg-purple-600 shadow-md text-purple-600 hover:shadow-lg"
+          {{ on "click" this.cancel }} >
+    Cancel
+  </button>
+</div>

@@ -37,12 +37,25 @@ class Api::V1::RoomsController < ApiController
   def create_params
     params.from_jsonapi.
         require(:room).
-        permit(:name, :descr)
+        permit(:region_id,
+               :name,
+               :descr,
+               :width,
+               :height,
+               :region_x,
+               :region_y,
+               :wall_tile_idx)
   end
 
   def update_params
     params.from_jsonapi.
         require(:room).
-        permit(:name, :descr)
+        permit(:name,
+               :descr,
+               :width,
+               :height,
+               :region_x,
+               :region_y,
+               :wall_tile_idx)
   end
 end

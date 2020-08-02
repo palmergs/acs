@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class ThingModel extends Model {
   @attr('string') name;
@@ -18,6 +18,25 @@ export default class ThingModel extends Model {
   @attr('number') range;
   @attr('number') breakability;
 
-
   @belongsTo adventure;
+
+  get isTreasure() {
+    return this.category == 'treasure';
+  }
+
+  get isWeapon() {
+    return this.category == 'weapon';
+  }
+
+  get isArmor() {
+    return this.category == 'armor';
+  }
+
+  get isPortal() {
+    return this.category == 'portal';
+  }
+
+  get isFloor() {
+    return this.category == 'floor';
+  }
 }

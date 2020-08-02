@@ -7,6 +7,12 @@
       &lt; back
     </LinkTo>
 
+    <LinkTo @route="adventures.adventure.things.new"
+            @model={{ @model.adventure }}
+            class="px-4 py-2 no-underline rounded bg-purple-600 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-500 focus:outline-none">
+      Add Thing
+    </LinkTo>
+
     {{#if @model.things}}
       <hr class="mt-4 pb-4"/>
 

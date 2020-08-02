@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 
 export default class AdventuresAdventureMapsNewRoute extends Route {
-  model(params) {
+  async model(params) {
     const adventure = this.modelFor('adventures.adventure');
     return this.store.createRecord('map', {
       adventure: adventure,

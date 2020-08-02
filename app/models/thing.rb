@@ -22,4 +22,20 @@ class Thing < ApplicationRecord
   scope :by_name, ->(filters) {
     where('things.name like ?', "#{ filters[:name] }%") if filters[:name].present?
   }
+  
+  scope :by_category, ->(filters) {
+    where(category: filters[:category]) if filters[:category].present?
+  }
+
+  def weapon?
+    category == WEAPON
+  end
+
+  def armor?
+    category == ARMOR
+  end
+
+  def treasure?
+    category == TREASURE
+  end
 end

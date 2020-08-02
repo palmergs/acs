@@ -26,7 +26,10 @@ Router.map(function() {
         this.route('new');
         this.route('creature', { path: ':creature_id' });
       });
-      this.route('things');
+      this.route('things', function() {
+        this.route('thing');
+        this.route('new');
+      });
     });
   });
 });
