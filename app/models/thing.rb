@@ -27,6 +27,12 @@ class Thing < ApplicationRecord
     where(category: filters[:category]) if filters[:category].present?
   }
 
+  before :validation(on :create) do
+    self.power = 0 if power.nil?
+    self.range = 0 if range.nil?
+    self.attack_adj = 0 if attack_adj.nil?
+  end
+
   def weapon?
     category == WEAPON
   end
