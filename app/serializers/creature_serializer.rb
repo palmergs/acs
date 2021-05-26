@@ -1,5 +1,6 @@
 class CreatureSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
+
   set_key_transform :dash
   belongs_to :adventure
   attributes :name,

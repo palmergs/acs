@@ -38,8 +38,8 @@ gem 'pundit', '~> 2.1'
 
 # JSON::API
 gem 'rack-cors'
-gem 'fast_jsonapi', '~> 1.5'
 gem 'jsonapi_parameters', '~> 2.0.0'
+gem 'jsonapi-serializer', '~> 2.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
