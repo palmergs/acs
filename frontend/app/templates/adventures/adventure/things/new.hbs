@@ -67,6 +67,19 @@
                      @onUpdate={{ fn this.updateValue 'range' }}/>
     </div>
   </div>
+
+  <div class="flex">
+    <div class="w-1/2 pr-2">
+      <label class="text-sm pb-0 mb-0">Attack Adjustment</label>
+      <EditableField @value={{ @model.attack }}
+                     @onUpdate={{ fn this.updateValue 'attack' }}/>
+    </div>
+    <div class="w-1/2 wl-2">
+      <label class="text-sm pb-0 mb-0">Chance of Breaking</label>
+      <EditableField @value={{ @model.breakability }}
+                     @onUpdate={{ fn this.updateValue 'breakability' }}/>
+    </div>
+  </div>
 {{/if}}
 
 <hr/>
